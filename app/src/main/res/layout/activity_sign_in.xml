@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/signin"
+    android:background="@mipmap/viewsignup"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="319dp"
+        android:layout_height="472dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.861">
+
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="49dp"
+            android:background="@drawable/border"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            >
+            <Button
+                android:id="@+id/btnSignIn"
+                android:layout_width="131dp"
+                android:layout_height="49dp"
+                android:backgroundTint="@color/blue"
+                android:text="Sign in"
+                android:textSize="24dp" />
+            <Button
+                android:id="@+id/btnSignUp"
+                android:layout_width="131dp"
+                android:layout_height="49dp"
+                android:backgroundTint="@color/white"
+                android:text="Sign up"
+                android:textColor="@color/blue"
+                android:gravity="center"
+                android:textSize="24dp"
+                />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="247dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="60dp"
+            android:hint="Enter email or username"
+            />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="247dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:hint="Password"
+            android:paddingBottom="15dp" />
+
+        <ImageView
+            android:id="@+id/btnHintPassword"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="110dp"
+            android:src="@drawable/eyepassword"
+            />
+
+        <CheckBox
+            android:id="@+id/checkboxRememberPassword"
+            android:layout_width="14dp"
+            android:layout_height="12dp"
+            android:layout_marginTop="248dp"
+            android:layout_marginLeft="20dp"
+            />
+
+        <TextView
+            android:layout_width="99dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="245dp"
+            android:alpha="0.5"
+            android:text="Remember me"
+            android:layout_marginLeft="40dp"/>
+
+        <TextView
+            android:id="@+id/txtForgotPassword"
+            android:layout_width="118dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="245dp"
+            android:alpha="0.5"
+            android:text="Forgot password?"
+            android:layout_marginLeft="150dp"/>
+
+        <Button
+            android:id="@+id/btnSignInBottom"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:backgroundTint="@color/blue"
+            android:text="Sign in"
+            android:layout_gravity="center"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_width="28dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="140dp"
+            android:text="-OR-"
+            android:alpha="0.5"
+            />
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="180dp"
+            android:background="@drawable/google"
+            />
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
