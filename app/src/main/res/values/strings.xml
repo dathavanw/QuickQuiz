@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Quiz App</string>
+    <string name="quiz_code">Mã bài:</string>
+    <string name="sign_out">Sign out</string>
+    <string name="student">Học sinh</string>
+
+    <string name="nav_search">Tìm kiếm</string>
+    <string name="nav_activities">Hoạt động</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_classes">Các lớp học</string>
+    <string name="nav_account">Tài khoản</string>
+</resources>

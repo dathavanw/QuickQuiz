@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/purple_dark"
+    android:padding="16dp">
+
+    <!-- Hình ảnh -->
+    <ImageView
+        android:id="@+id/imgQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:background="@color/white"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Câu hỏi -->
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Câu hỏi?"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Đáp án -->
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="2"
+        android:rowCount="2">
+
+        <Button
+            android:id="@+id/btnOption1"
+            style="@style/QuizButton"
+            android:text="Option 1"/>
+
+        <Button
+            android:id="@+id/btnOption2"
+            style="@style/QuizButton"
+            android:text="Option 2"/>
+
+        <Button
+            android:id="@+id/btnOption3"
+            style="@style/QuizButton"
+            android:text="Option 3"/>
+
+        <Button
+            android:id="@+id/btnOption4"
+            style="@style/QuizButton"
+            android:text="Option 4"/>
+    </GridLayout>
+
+    <!-- Nút chuyển câu -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="16dp">
+
+        <ImageButton
+            android:id="@+id/btnPrevious"
+            android:layout_width="50dp"
+            android:layout_height="31dp"
+            android:background="@drawable/ic_prev"
+            android:contentDescription="Previous"/>
+
+        <ImageButton
+            android:id="@+id/btnNext"
+            android:layout_width="50dp"
+            android:layout_height="31dp"
+            android:background="@drawable/ic_next"
+            android:contentDescription="Next"
+            android:layout_marginStart="16dp"/>
+    </LinearLayout>
+
+</LinearLayout>

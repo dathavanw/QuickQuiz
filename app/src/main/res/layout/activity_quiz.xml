@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#70D4FF"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_purple_bg"
+            android:contentDescription="Back"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_home" />
+
+        <TextView
+            android:id="@+id/tvQuizCode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/rounded_purple_bg"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="Mã bài: 84435"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_button_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imgQuestion"
+            android:layout_width="276dp"
+            android:layout_height="196dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sample_image" />
+
+        <TextView
+            android:id="@+id/tvQuestion"
+            android:layout_width="275dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Pick the places where there is a Disneyland?"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:alignmentMode="alignMargins"
+            android:columnCount="2"
+            android:columnOrderPreserved="false"
+            android:padding="10dp"
+            android:rowCount="2">
+
+            <Button
+                android:id="@+id/btnOption1"
+                style="@style/AnswerButtonStyle"
+                android:layout_margin="20dp"
+                android:backgroundTint="#FFCCBC"
+                android:text="France"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnOption2"
+                style="@style/AnswerButtonStyle"
+                android:layout_margin="20dp"
+                android:backgroundTint="#A5D6A7"
+                android:text="California"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnOption3"
+                style="@style/AnswerButtonStyle"
+                android:layout_margin="20dp"
+                android:backgroundTint="#CE93D8"
+                android:text="China"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/btnOption4"
+                style="@style/AnswerButtonStyle"
+                android:layout_margin="20dp"
+                android:backgroundTint="#B3E5FC"
+                android:text="Hong Kong"
+                android:textColor="@android:color/white" />
+        </GridLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/btnPrev"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:contentDescription="Previous"
+                android:padding="10dp"
+                android:src="@drawable/ic_prev" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/btnNext"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:contentDescription="Next"
+                android:padding="10dp"
+                android:src="@drawable/ic_next" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
