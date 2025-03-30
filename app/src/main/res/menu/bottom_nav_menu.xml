@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_timkiem"
+        android:title="Tìm kiếm"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_activity"
+        android:icon="@drawable/ic_hoatdong"
+        android:title="Hoạt động"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_trangchu"
+        android:title="Trang chủ"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_course"
+        android:icon="@drawable/ic_lophoc"
+        android:title="Các lớp học"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/nav_account"
+        android:icon="@drawable/ic_caidat"
+        android:title="Tài khoản"
+        app:showAsAction="ifRoom"/>
+</menu>

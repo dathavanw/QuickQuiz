@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BTL_Cung</string>
+    <string name="menu_button_desc">Menu Button</string>
+    <string name="title_create_quiz">Create Quiz</string>
+    <string name="hint_quiz_title">Hint Quiz Title</string>
+    <string name="add_question">Add question</string>
+    <string name="multiple_choice">Multiple Choice</string>
+    <string name="fill_blank">Fill Blank</string>
+</resources>
