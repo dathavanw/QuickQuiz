@@ -7,5 +7,7 @@
     <color name="gray">#B4B3B3</color>
     <color name="edittext_background">#F4EEF9</color>
     <color name="black_20">#33000000</color>
-
+    <color name="buttontext">#50C2C9</color>
+    <color name="inactive">#C4C4C4</color>
+    <color name="active">#50C2C9</color>
 </resources>
