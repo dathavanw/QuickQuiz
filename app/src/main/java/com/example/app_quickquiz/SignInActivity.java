@@ -84,7 +84,6 @@ public class SignInActivity extends AppCompatActivity{
              btnHintPassword.setImageResource(R.drawable.eyepassword); // Mắt mở
              isPasswordVisible = true;
          }
-
          txtPassword.setSelection(txtPassword.length());
      }
 
