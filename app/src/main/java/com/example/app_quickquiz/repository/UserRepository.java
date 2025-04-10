@@ -13,9 +13,19 @@ public class UserRepository {
         this.db = new Database();
     }
     public void insertUser(String name,String email ,String password, String role){
-            User user = new User(null,name,email,password,role);
+            User user = new User(null,name,email,role);
             db.insertUser(email,password,user);
     }
+
+
+    // Quên mật khẩu
+    public void sendPasswordReset(String email){
+        db.sendPasswordReset(email);
+    }
+
+
+
+
 
 
 
