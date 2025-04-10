@@ -46,7 +46,7 @@
             android:exported="false">
         </activity>
         <activity
-            android:name=".HomeActivity"
+            android:name=".StudentActivity"
             android:exported="false">
         </activity>
         <activity

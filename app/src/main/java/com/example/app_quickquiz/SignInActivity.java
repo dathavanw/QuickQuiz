@@ -2,6 +2,7 @@
 package com.example.app_quickquiz;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.app_quickquiz.database.Database;
+import com.example.app_quickquiz.repository.UserRepository;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class SignInActivity extends AppCompatActivity{
 
@@ -25,6 +29,7 @@ public class SignInActivity extends AppCompatActivity{
     private ImageView btnHintPassword;
     private TextView txtForgotPassword,passwordWarning;
     private FirebaseAuth mAuth;
+    UserRepository userRepository;
     private boolean isVisible = false;
 
     @Override
@@ -32,10 +37,12 @@ public class SignInActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_in);
-
+        userRepository = new UserRepository();
         btnSignUp = findViewById(R.id.btnSignUp);
+
         txtEmail = findViewById(R.id.txtEmail);
         txtPassword = findViewById(R.id.txtPassword);
+
         btnHintPassword = findViewById(R.id.btnHintPassword);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
         btnSignInBottom = findViewById(R.id.btnSignInBottom);
@@ -82,8 +89,44 @@ public class SignInActivity extends AppCompatActivity{
      }
 
      private void SignIn() {
-         String email = txtEmail.getText().toString().trim();
-         String password = txtPassword.getText().toString().trim();
+        String   email = txtEmail.getText().toString().trim();
+        String   password = txtPassword.getText().toString().trim();
+
+         Log.d("DEBUG", "Email input: " + email);
+         Log.d("DEBUG", "Password input: " + password);
+
+         if (email.isEmpty() || password.isEmpty()) {
+             Toast.makeText(this, "Vui lòng nhập đầy đủ email và mật khẩu", Toast.LENGTH_SHORT).show();
+             return;
+         }
+         userRepository.loginWithEmailAndPassword(email, password,
+         new Database.LoginCallback() {
+                     @Override
+                     public void onSuccess(FirebaseUser user) {
+                         Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                     }
+
+                     @Override
+                     public void onFailure(String errorMessage) {
+                         Toast.makeText(SignInActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                     }
+                 },
+                 new Database.RoleCallback() {
+                     @Override
+                     public void onRoleReceived(String role) {
+                         if (role.equals("teacher")) {
+                             startActivity(new Intent(SignInActivity.this, StudentActivity.class));
+                         } else {
+                             startActivity(new Intent(SignInActivity.this, StudentActivity.class));
+                         }
+                         finish();
+                     }
+
+                     @Override
+                     public void onError(String e) {
+                         Toast.makeText(SignInActivity.this, e, Toast.LENGTH_SHORT).show();
+                     }
+                 });
 
 
      }
