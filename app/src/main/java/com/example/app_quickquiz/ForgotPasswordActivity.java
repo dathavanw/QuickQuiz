@@ -31,13 +31,15 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     public void resetPassword(){
         String email = emailGetPassword.getText().toString().trim();
         if(email.isEmpty()){
-            emailGetPassword.setError("Vui lòng nhập email !");
+            emailGetPassword.setError("Please enter email !");
         } else if (!email.isEmpty()) {
             userRepository.sendPasswordReset(email);
-            Toast.makeText(this,"Email khôi phục đã được gửi ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Verify your email address ! ",Toast.LENGTH_SHORT).show();
+            Intent intent  = new Intent(ForgotPasswordActivity.this, SignInActivity.class);
+            startActivity(intent);
         }else
         {
-            Toast.makeText(this,"Xảy ra lỗi xác nhận ! Vui lòng thử lại ! ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Error ! Please try again!",Toast.LENGTH_SHORT).show();
         }
     }
 

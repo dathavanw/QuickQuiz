@@ -41,7 +41,14 @@ public class Database {
 
     // Quên mật khẩu
     public void sendPasswordReset(String email){
-        mAuth.sendPasswordResetEmail(email);
+        mAuth.sendPasswordResetEmail(email)
+        .addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("LoginTest", "Mật khẩu đã được cập nhật thành công");
+            } else {
+                Log.e("LoginTest", "Đăng nhập thất bại: " + task.getException().getMessage());
+            }
+        });
     }
 
 
