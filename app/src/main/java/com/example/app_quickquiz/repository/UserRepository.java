@@ -52,6 +52,21 @@ public class UserRepository {
 
 
 
+    public void getUserInfor(String uid, Database.DatabaseCallback callback) {
+        db.getUserInfor(uid, new Database.DatabaseCallback() {
+            @Override
+            public void onSuccess(User user) {
+                callback.onSuccess(user);
+            }
+
+            @Override
+            public void onError(Exception e) {
+                callback.onError(e);
+            }
+        });
+    }
+
+
 
 
 }

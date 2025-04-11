@@ -141,9 +141,11 @@ public class SignInActivity extends AppCompatActivity{
                      @Override
                      public void onRoleReceived(String role) {
                          if (role.equals("teacher")) {
+                             Log.d("DEBUG", "Role is teacher");
                              startActivity(new Intent(SignInActivity.this, StudentActivity.class));
                          } else {
-                             startActivity(new Intent(SignInActivity.this, StudentActivity.class));
+                             Log.d("DEBUG", "Role is student");
+                             startActivity(new Intent(SignInActivity.this, AccountActivity.class));
                          }
                          finish();
                      }

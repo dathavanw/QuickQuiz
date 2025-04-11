@@ -121,4 +121,30 @@ public class Database {
     }
 
 
+
+    // lấy thông tin người dùng
+    public void getUserInfor(String uid , DatabaseCallback callback){
+        DatabaseReference userRef = mDatabase.child(uid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                if (callback != null) {
+                    callback.onSuccess(user);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                if (callback != null) {
+                    callback.onError(databaseError.toException());
+                }
+            }
+        });
+
+    }
+    public interface DatabaseCallback {
+        void onSuccess(User user);
+        void onError(Exception e);
+    }
+
 }
