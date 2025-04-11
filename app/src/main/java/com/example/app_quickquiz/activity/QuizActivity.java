@@ -1,18 +1,14 @@
-package com.example.quickquizapp;
+package com.example.quickquizapp.activity;
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
+
+import com.example.quickquizapp.Question;
+import com.example.quickquizapp.R;
 
 import java.util.ArrayList;
 import java.util.List;

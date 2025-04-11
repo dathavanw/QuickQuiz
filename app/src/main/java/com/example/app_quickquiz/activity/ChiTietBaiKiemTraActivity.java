@@ -1,10 +1,12 @@
-package com.example.quickquizapp;
+package com.example.quickquizapp.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.quickquizapp.R;
 
 public class ChiTietBaiKiemTraActivity extends AppCompatActivity {
 

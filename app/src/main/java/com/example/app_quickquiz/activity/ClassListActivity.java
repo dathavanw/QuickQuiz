@@ -1,9 +1,14 @@
-package com.example.quickquizapp;
+package com.example.quickquizapp.activity;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.quickquizapp.adapter.ClassAdapter;
+import com.example.quickquizapp.ClassItem;
+import com.example.quickquizapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

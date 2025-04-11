@@ -1,4 +1,4 @@
-package com.example.quickquizapp;
+package com.example.quickquizapp.fragment;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
@@ -9,12 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+
+import com.example.quickquizapp.R;
 
 
 public class EditProfileFragment extends Fragment {
