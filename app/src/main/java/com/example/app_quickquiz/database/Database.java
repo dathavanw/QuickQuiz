@@ -3,7 +3,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.app_quickquiz.model.Feedback;
 import com.example.app_quickquiz.model.User;
+import com.example.app_quickquiz.repository.FeedBackRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -14,7 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Database {
     private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
-    private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();                                                                    ;
+    private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();
+    private static final DatabaseReference FeedbackDatabase = FirebaseDatabase.getInstance().getReference("feedbacks");
+
 //    public DatabaseReference getDatabaseReference(){
 //        return mDatabase;
 //    }
@@ -22,6 +26,13 @@ public class Database {
 //        return mAuth;
 //    }
 
+    public void saveFeedbackToFirebase(String email, String feedback, FeedBackRepository.FeedbackCallback callback) {
+        String feedbackId = FeedbackDatabase.push().getKey();
+        Feedback feedbackObj = new Feedback(feedbackId, email, feedback);
+        FeedbackDatabase.child(feedbackId).setValue(feedbackObj)
+                .addOnCompleteListener(task -> callback.onComplete(task.isSuccessful()))
+                .addOnFailureListener(e -> callback.onComplete(false));
+    }
 
     // đăng ký người dùng
     public  void  insertUser(String email,String password , User user){

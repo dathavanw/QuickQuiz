@@ -25,7 +25,7 @@ public class StudentActivity extends AppCompatActivity {
         screenstudent = findViewById(R.id.screenstudent);
         screenstudent.setBackgroundResource(R.drawable.animation_student_main);
 
-        AnimationDrawable animationDrawable = (AnimationDrawable) screenstudent.getBackground();
+        animationDrawable = (AnimationDrawable) screenstudent.getBackground();
         animationDrawable.start();
 
         mAuth = FirebaseAuth.getInstance();

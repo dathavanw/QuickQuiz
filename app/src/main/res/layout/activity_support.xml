@@ -28,10 +28,10 @@
         android:layout_marginBottom="24dp"/>
 
     <EditText
-        android:id="@+id/txtFullName"
+        android:id="@+id/txtEmailFeedback"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:hint="Full Name"
+        android:hint=" Your Email"
         android:drawableStart="@drawable/user_image"
         android:paddingStart="12dp"
         android:background="@color/edittext_background"
