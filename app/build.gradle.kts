@@ -33,6 +33,9 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.credentials:credentials:1.2.0-alpha03")
+    implementation ("androidx.credentials:credentials-play-services-auth:1.2.0-alpha03")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
     implementation ("com.google.firebase:firebase-database:20.3.0")
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -40,6 +43,7 @@ dependencies {
     implementation(libs.constraintlayout)
     implementation(libs.firebase.database)
     implementation(libs.firebase.auth)
+    implementation(libs.googleid)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)

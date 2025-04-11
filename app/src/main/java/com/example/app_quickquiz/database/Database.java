@@ -104,4 +104,10 @@ public class Database {
     }
 
 
+    // đăng nhập bằng google
+    public void insertUserWithGoogle(String uid, User user) {
+
+    }
+
+
 }

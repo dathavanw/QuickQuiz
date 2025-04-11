@@ -1,16 +1,27 @@
 package com.example.app_quickquiz;
 
 import android.content.Intent;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.credentials.Credential;
+import androidx.credentials.CredentialManager;
+import androidx.credentials.CredentialManagerCallback;
+import androidx.credentials.GetCredentialRequest;
+import androidx.credentials.GetCredentialResponse;
+import androidx.credentials.exceptions.GetCredentialException;
+
+
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
+
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.view.animation.Animation;
@@ -19,14 +30,25 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_quickquiz.model.User;
 import com.example.app_quickquiz.repository.UserRepository;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 
 public class SignUpActivity extends AppCompatActivity {
 
     EditText name ,password, cfpassword ,email;
     Button btnSignUp;
     UserRepository userRepository;
+
     TextView passwordWarning;
     ImageButton btnHintPassword,btnHintCPassword;
+    ImageView btngoogle;
+
+    private String selectedRole = "";
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +65,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         userRepository = new UserRepository();
 
+
+        selectedRole = getIntent().getStringExtra("role");
+
         name = findViewById(R.id.txtName);
         password = findViewById(R.id.txtPassword);
         cfpassword = findViewById(R.id.txtCPassword);
@@ -50,12 +75,13 @@ public class SignUpActivity extends AppCompatActivity {
         passwordWarning = findViewById(R.id.passwordWarning);
         btnHintPassword = findViewById(R.id.btnHintPassword);
         btnHintCPassword = findViewById(R.id.btnHintCPassword);
-
+        btngoogle = findViewById(R.id.btnGoogle);
         btnHintPassword.setOnClickListener(v->hintPass());
         btnHintCPassword.setOnClickListener(v->hintCPass());
 
         btnSignUp = findViewById(R.id.btnSignUpBottom);
         btnSignUp.setOnClickListener(v -> signUp());
+        btngoogle.setOnClickListener(v -> startGoogleSignIn());
 
     }
 
@@ -98,7 +124,6 @@ public class SignUpActivity extends AppCompatActivity {
         String Password = password.getText().toString().trim();
         String Email = email.getText().toString().trim();
         String Cfpassword = cfpassword.getText().toString().trim();
-        String selectedRole = getIntent().getStringExtra("role");
 
         if (Name.isEmpty() || Password.isEmpty() || Email.isEmpty() || Cfpassword.isEmpty()) {
             Toast.makeText(this, "Please enter complete information", Toast.LENGTH_SHORT).show();
@@ -115,5 +140,10 @@ public class SignUpActivity extends AppCompatActivity {
             Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
             startActivity(intent);
         }
+    }
+
+    private void startGoogleSignIn() {
+
+
     }
 }

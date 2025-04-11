@@ -46,6 +46,12 @@ public class UserRepository {
     }
 
 
+    public void insertUserWithGoogle(FirebaseUser firebaseUser, String role) {
+       
+    }
+
+
+
 
 
 }
