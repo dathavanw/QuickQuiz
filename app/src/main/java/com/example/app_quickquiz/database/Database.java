@@ -15,12 +15,12 @@ import com.google.firebase.database.ValueEventListener;
 public class Database {
     private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
     private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();                                                                    ;
-    public DatabaseReference getDatabaseReference(){
-        return mDatabase;
-    }
-    public FirebaseAuth getAuth(){
-        return mAuth;
-    }
+//    public DatabaseReference getDatabaseReference(){
+//        return mDatabase;
+//    }
+//    public FirebaseAuth getAuth(){
+//        return mAuth;
+//    }
 
 
     // đăng ký người dùng
