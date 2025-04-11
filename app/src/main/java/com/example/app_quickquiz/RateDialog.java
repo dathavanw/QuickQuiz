@@ -1,4 +1,4 @@
-package com.example.quickquizapp;
+package com.example.app_quickquiz;
 
 import android.app.Dialog;
 import android.content.Context;

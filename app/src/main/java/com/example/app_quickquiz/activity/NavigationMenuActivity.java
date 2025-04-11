@@ -1,4 +1,4 @@
-package com.example.quickquizapp.activity;
+package com.example.app_quickquiz.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickquizapp.R;
-import com.example.quickquizapp.fragment.HomeFragment;
+import com.example.app_quickquiz.R;
+import com.example.app_quickquiz.fragment.HomeFragment;
 
 public class NavigationMenuActivity extends AppCompatActivity {
 

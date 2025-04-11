@@ -1,4 +1,4 @@
-package com.example.quickquizapp.activity;
+package com.example.app_quickquiz.activity;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -7,8 +7,8 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickquizapp.Question;
-import com.example.quickquizapp.R;
+import com.example.app_quickquiz.Question;
+import com.example.app_quickquiz.R;
 
 import java.util.ArrayList;
 import java.util.List;

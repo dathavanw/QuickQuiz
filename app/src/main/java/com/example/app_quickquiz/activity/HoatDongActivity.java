@@ -1,4 +1,4 @@
-package com.example.quickquizapp.activity;
+package com.example.app_quickquiz.activity;
 
 import android.os.Bundle;
 import android.widget.Toast;
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quickquizapp.R;
-import com.example.quickquizapp.UserQuizResult;
-import com.example.quickquizapp.adapter.HoatDongAdapter;
+import com.example.app_quickquiz.R;
+import com.example.app_quickquiz.UserQuizResult;
+import com.example.app_quickquiz.adapter.HoatDongAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;

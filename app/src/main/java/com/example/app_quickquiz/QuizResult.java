@@ -1,4 +1,4 @@
-package com.example.quickquizapp;
+package com.example.app_quickquiz;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

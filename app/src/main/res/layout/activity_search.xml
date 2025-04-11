@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,6 +12,7 @@
         android:padding="16dp"
         android:layout_marginTop="50dp">
 
+        <!-- Tiêu đề -->
         <TextView
             android:text="Tìm kiếm"
             android:textSize="40sp"
@@ -25,6 +26,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp" />
 
+        <!-- Ô nhập tìm kiếm -->
         <EditText
             android:id="@+id/searchEditText"
             android:hint="Tìm kiếm quiz"
@@ -35,6 +37,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/rounded_edittext"/>
 
+        <!-- Nút chọn danh mục -->
         <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,14 +45,18 @@
             android:scrollbars="none"
             android:overScrollMode="never">
 
+            <!-- ID này phải là categoryLayout để Java code nhận diện -->
             <LinearLayout
+                android:id="@+id/categoryLayout"
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:layout_marginTop="10dp">
 
+                <!-- Các nút tĩnh có thể giữ lại hoặc load động từ Firebase -->
                 <Button
+                    android:id="@+id/btnGrades"
                     android:text="Grades"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
@@ -57,11 +64,10 @@
                     android:backgroundTint="#D3D3D3"
                     android:textColor="#000000"
                     android:textSize="10sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:layout_marginEnd="8dp"/>
 
                 <Button
+                    android:id="@+id/btnSubject"
                     android:text="Subject"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
@@ -69,11 +75,10 @@
                     android:backgroundTint="#D3D3D3"
                     android:textColor="#000000"
                     android:textSize="10sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:layout_marginEnd="8dp"/>
 
                 <Button
+                    android:id="@+id/btnChatGpt"
                     android:text="Chat GPT"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
@@ -81,11 +86,10 @@
                     android:backgroundTint="#D3D3D3"
                     android:textColor="#000000"
                     android:textSize="10sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:layout_marginEnd="8dp"/>
 
                 <Button
+                    android:id="@+id/mathButton"
                     android:text="Math"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
@@ -93,31 +97,36 @@
                     android:backgroundTint="#D3D3D3"
                     android:textColor="#000000"
                     android:textSize="10sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"
                     android:layout_marginEnd="8dp"/>
 
                 <Button
-                    android:text="Language"
+                    android:id="@+id/scienceButton"
+                    android:text="Science"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
                     android:backgroundTint="#D3D3D3"
                     android:textColor="#000000"
-                    android:textSize="10sp"
-                    android:paddingStart="8dp"
-                    android:paddingEnd="8dp"/>
+                    android:textSize="10sp" />
             </LinearLayout>
         </HorizontalScrollView>
 
+        <!-- RecyclerView hiển thị danh sách quiz -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewQuiz"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="16dp" />
 
+        <!-- Hình ảnh trang trí -->
         <ImageView
             android:id="@+id/quizImage"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:src="@drawable/ic_quiz_search"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"/>
-
+            android:layout_marginTop="30dp"
+            android:visibility="gone"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

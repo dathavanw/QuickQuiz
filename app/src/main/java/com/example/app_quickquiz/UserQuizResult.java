@@ -1,4 +1,4 @@
-package com.example.quickquizapp;
+package com.example.app_quickquiz;
 
 public class UserQuizResult {
     public int quiz_id;

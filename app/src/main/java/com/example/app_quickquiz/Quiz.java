@@ -1,4 +1,4 @@
-package com.example.quickquizapp;
+package com.example.app_quickquiz;
 
 public class Quiz {
     private int category_id;
@@ -7,13 +7,10 @@ public class Quiz {
     private String description;
     private int time_limit;
     private String title;
-    private String imageUrl; // Trường này sẽ dùng cho hiển thị hình ảnh quiz
+    private String imageUrl;
 
-    // Bắt buộc phải có constructor rỗng cho Firebase
     public Quiz() {
     }
-
-    // Getters và Setters
 
     public int getCategoryId() {
         return category_id;

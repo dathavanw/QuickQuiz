@@ -1,10 +1,7 @@
-package com.example.quickquizapp.activity;
+package com.example.app_quickquiz.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Patterns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -12,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.quickquizapp.R;
+import com.example.app_quickquiz.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 

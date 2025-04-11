@@ -1,4 +1,4 @@
-package com.example.quickquizapp.adapter;
+package com.example.app_quickquiz.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,8 +9,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quickquizapp.ClassItem;
-import com.example.quickquizapp.R;
+import com.example.app_quickquiz.ClassItem;
+import com.example.app_quickquiz.R;
 
 import java.util.List;
 

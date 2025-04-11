@@ -1,4 +1,4 @@
-package com.example.quickquizapp.activity;
+package com.example.app_quickquiz.activity;
 
 import android.os.Bundle;
 import android.widget.ImageButton;
@@ -7,9 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.quickquizapp.adapter.NotificationAdapter;
-import com.example.quickquizapp.NotificationItem;
-import com.example.quickquizapp.R;
+import com.example.app_quickquiz.adapter.NotificationAdapter;
+import com.example.app_quickquiz.NotificationItem;
+import com.example.app_quickquiz.R;
 
 import java.util.ArrayList;
 import java.util.List;

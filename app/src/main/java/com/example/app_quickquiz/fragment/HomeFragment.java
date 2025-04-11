@@ -1,4 +1,4 @@
-package com.example.quickquizapp.fragment;
+package com.example.app_quickquiz.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.quickquizapp.R;
+import com.example.app_quickquiz.R;
 
 public class HomeFragment extends Fragment {
     @Override

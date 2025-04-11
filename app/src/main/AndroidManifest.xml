@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.quickquizapp">
+    package="com.example.app_quickquiz">
 
     <application
         android:allowBackup="true"
@@ -9,22 +9,24 @@
         android:theme="@style/Theme.QuickQuizApp">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.app_quickquiz.activity.NavigationMenuActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".ChangePasswordActivity" />
-        <activity android:name=".ChiTietBaiKiemTraActivity" />
-        <activity android:name=".ClassListActivity" />
-        <activity android:name=".EditProfileActivity" />
-        <activity android:name=".HoatDongActivity" />
-        <activity android:name=".NotificationActivity" />
-        <activity android:name=".QuizActivity" />
-        <activity android:name=".SearchActivity" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.ChangePasswordActivity"
+            android:exported="false" />
+<!--        <activity android:name="" />-->
+        <activity android:name="com.example.app_quickquiz.activity.ChiTietBaiKiemTraActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.ClassListActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.EditProfileActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.HoatDongActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.NotificationActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.QuizActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.SearchActivity" />
 
     </application>
 </manifest>

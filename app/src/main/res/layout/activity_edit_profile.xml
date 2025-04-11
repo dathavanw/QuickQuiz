@@ -30,7 +30,6 @@
         android:layout_width="378dp"
         android:layout_height="263dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
         android:gravity="center">
 
         <ImageView
@@ -83,7 +82,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"/>
 
-    <!-- Sửa lại thông tin cho user -->
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
@@ -101,11 +99,11 @@
         android:id="@+id/btnSaveChanges"
         android:layout_width="176dp"
         android:layout_height="50dp"
-        android:text="Save changes"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:background="@drawable/rounded_button_edit"
         android:layout_gravity="center"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="50dp"
+        android:background="@drawable/rounded_button_edit"
+        android:text="Save changes"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"
+        android:textStyle="bold" />
 </LinearLayout>
