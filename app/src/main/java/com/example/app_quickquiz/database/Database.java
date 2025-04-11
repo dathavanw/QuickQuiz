@@ -4,6 +4,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 
 import com.example.app_quickquiz.model.Feedback;
+import com.example.app_quickquiz.model.Quiz;
 import com.example.app_quickquiz.model.User;
 import com.example.app_quickquiz.repository.FeedBackRepository;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,7 +19,7 @@ public class Database {
     private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
     private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();
     private static final DatabaseReference FeedbackDatabase = FirebaseDatabase.getInstance().getReference("feedbacks");
-
+    private static final DatabaseReference quizRef  = FirebaseDatabase.getInstance().getReference("quizzes");
 //    public DatabaseReference getDatabaseReference(){
 //        return mDatabase;
 //    }
@@ -142,9 +143,37 @@ public class Database {
         });
 
     }
+
     public interface DatabaseCallback {
         void onSuccess(User user);
         void onError(Exception e);
     }
+
+    // lấy mã bài Quiz
+    public void getQuiz(String codeQuiz , Callback<Quiz> callback){
+        quizRef.child(codeQuiz);
+        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Quiz quiz = snapshot.getValue(Quiz.class);
+                    callback.onSuccess(quiz);
+                } else {
+                    callback.onSuccess(null);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                callback.onError(error.toException());
+            }
+        });
+    }
+
+    public interface Callback<Quiz> {
+        void onSuccess(Quiz quiz);
+        void onError(Exception e);
+    }
+
 
 }

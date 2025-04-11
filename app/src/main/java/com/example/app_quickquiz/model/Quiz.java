@@ -1,0 +1,75 @@
+package com.example.app_quickquiz.model;
+
+public class Quiz {
+    private String id, title, description, created_by , created_at, category_id;
+    private long time_limit ;
+
+    public Quiz(String id, String title, String description, String created_by, String created_at, String category_id, long time_limit) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.created_by = created_by;
+        this.created_at = created_at;
+        this.category_id = category_id;
+        this.time_limit = time_limit;
+    }
+
+    public Quiz() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getCreated_by() {
+        return created_by;
+    }
+
+    public void setCreated_by(String created_by) {
+        this.created_by = created_by;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
+    }
+
+    public long getTime_limit() {
+        return time_limit;
+    }
+
+    public void setTime_limit(long time_limit) {
+        this.time_limit = time_limit;
+    }
+}
