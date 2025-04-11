@@ -1,7 +1,9 @@
 package com.example.app_quickquiz;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class StudentActivity extends AppCompatActivity {
     private TextView btnSignOut;
+    private ImageView screenstudent;
+    AnimationDrawable animationDrawable;
     private SharedPreferencesManager sharedPreferencesManager;
     private FirebaseAuth mAuth;
     @Override
@@ -18,6 +22,12 @@ public class StudentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         btnSignOut = findViewById(R.id.tvSignOut);
+        screenstudent = findViewById(R.id.screenstudent);
+        screenstudent.setBackgroundResource(R.drawable.animation_student_main);
+
+        AnimationDrawable animationDrawable = (AnimationDrawable) screenstudent.getBackground();
+        animationDrawable.start();
+
         mAuth = FirebaseAuth.getInstance();
         sharedPreferencesManager = new SharedPreferencesManager(this);
         btnSignOut.setOnClickListener(v -> signOut());
