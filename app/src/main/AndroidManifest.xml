@@ -9,7 +9,7 @@
         android:theme="@style/Theme.QuickQuizApp">
 
         <activity
-            android:name="com.example.app_quickquiz.activity.NavigationMenuActivity"
+            android:name="com.example.app_quickquiz.activity.HistoryActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,16 +17,28 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.app_quickquiz.activity.QuizActivity"
+            android:exported="false" />
+        <activity
             android:name="com.example.app_quickquiz.activity.ChangePasswordActivity"
             android:exported="false" />
-<!--        <activity android:name="" />-->
-        <activity android:name="com.example.app_quickquiz.activity.ChiTietBaiKiemTraActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.ClassListActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.EditProfileActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.HoatDongActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.NotificationActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.QuizActivity" />
-        <activity android:name="com.example.app_quickquiz.activity.SearchActivity" />
-
+        <activity
+            android:name="com.example.app_quickquiz.activity.ClassListActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.DialogRateActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.DialogShareActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.example.app_quickquiz.activity.SearchQuizActivity"
+            android:exported="false" />
     </application>
 </manifest>

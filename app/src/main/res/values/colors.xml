@@ -26,4 +26,5 @@
     <color name="orange">#F59E0B</color>
     <color name="gray_disabled">#D1D5DB</color>
     <color name="green">#22C55E</color>
+    <color name="correct_answer">#4CAF50</color>
 </resources>

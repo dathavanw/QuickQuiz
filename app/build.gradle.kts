@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.google.services) // ✅ Đã hoạt động với version catalog
+    alias(libs.plugins.google.services)
 }
 
 android {

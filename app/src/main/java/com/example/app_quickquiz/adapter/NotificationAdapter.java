@@ -1,5 +1,6 @@
 package com.example.app_quickquiz.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,48 +9,64 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.app_quickquiz.NotificationItem;
 import com.example.app_quickquiz.R;
+import com.example.app_quickquiz.model.Notification;
 
 import java.util.List;
 
-public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.ViewHolder> {
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder> {
 
-    private final List<NotificationItem> notifications;
+    private Context context;
+    private List<Notification> notificationList;
 
-    public NotificationAdapter(List<NotificationItem> notifications) {
-        this.notifications = notifications;
+    public NotificationAdapter(Context context, List<Notification> notificationList) {
+        this.context = context;
+        this.notificationList = notificationList;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_notification, parent, false);
-        return new ViewHolder(view);
+    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.item_notification, parent, false);
+        return new NotificationViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        NotificationItem item = notifications.get(position);
-        holder.imgIcon.setImageResource(item.getIconResId());
-        holder.tvDateTime.setText(item.getDateTime());
-        holder.tvMessage.setText(item.getMessage());
+    public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
+        Notification notification = notificationList.get(position);
+        holder.tvMessage.setText(notification.getMessage());
+        holder.tvDateTime.setText(notification.getDateTime());
+
+        switch (notification.getType()) {
+            case "update":
+                holder.imgIcon.setImageResource(R.drawable.ic_update);
+                break;
+            case "promotion":
+                holder.imgIcon.setImageResource(R.drawable.ic_promotion);
+                break;
+            case "system":
+                holder.imgIcon.setImageResource(R.drawable.ic_system);
+                break;
+            default:
+                holder.imgIcon.setImageResource(R.drawable.ic_notification);
+                break;
+        }
     }
 
     @Override
     public int getItemCount() {
-        return notifications.size();
+        return notificationList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class NotificationViewHolder extends RecyclerView.ViewHolder {
         ImageView imgIcon;
-        TextView tvDateTime, tvMessage;
+        TextView tvMessage, tvDateTime;
 
-        public ViewHolder(@NonNull View itemView) {
+        public NotificationViewHolder(@NonNull View itemView) {
             super(itemView);
             imgIcon = itemView.findViewById(R.id.imgIcon);
-            tvDateTime = itemView.findViewById(R.id.tvDateTime);
             tvMessage = itemView.findViewById(R.id.tvMessage);
+            tvDateTime = itemView.findViewById(R.id.tvDateTime);
         }
     }
 }

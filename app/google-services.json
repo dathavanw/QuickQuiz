@@ -37,9 +37,9 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:43638605364:android:a9ee0cf4f6126a9cd6ac61",
+        "mobilesdk_app_id": "1:43638605364:android:27bba348f480779cd6ac61",
         "android_client_info": {
-          "package_name": "com.example.quickquizapp"
+          "package_name": "com.example.btl"
         }
       },
       "oauth_client": [

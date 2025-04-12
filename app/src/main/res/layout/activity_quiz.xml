@@ -32,7 +32,7 @@
             android:background="@drawable/rounded_purple_bg"
             android:gravity="center"
             android:padding="12dp"
-            android:text="Mã bài: 84435"
+            android:text="Mã bài: "
             android:textColor="@android:color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -45,6 +45,7 @@
         android:background="@android:color/darker_gray"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,7 +67,7 @@
             android:layout_width="275dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Pick the places where there is a Disneyland?"
+            android:text="Question?"
             android:textColor="@android:color/black"
             android:textSize="18sp" />
 
@@ -85,7 +86,7 @@
                 style="@style/AnswerButtonStyle"
                 android:layout_margin="20dp"
                 android:backgroundTint="#FFCCBC"
-                android:text="France"
+                android:text="Answer 1"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -93,7 +94,7 @@
                 style="@style/AnswerButtonStyle"
                 android:layout_margin="20dp"
                 android:backgroundTint="#A5D6A7"
-                android:text="California"
+                android:text="Answer 2"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -101,7 +102,7 @@
                 style="@style/AnswerButtonStyle"
                 android:layout_margin="20dp"
                 android:backgroundTint="#CE93D8"
-                android:text="China"
+                android:text="Answer 3"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -109,7 +110,7 @@
                 style="@style/AnswerButtonStyle"
                 android:layout_margin="20dp"
                 android:backgroundTint="#B3E5FC"
-                android:text="Hong Kong"
+                android:text="Answer 4"
                 android:textColor="@android:color/white" />
         </GridLayout>
 

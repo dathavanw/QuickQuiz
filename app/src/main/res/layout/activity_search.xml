@@ -2,10 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".activity.SearchQuizActivity">
 
     <LinearLayout
+        android:id="@+id/rootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -14,12 +17,14 @@
 
         <!-- Tiêu đề -->
         <TextView
+            android:id="@+id/titleTextView"
             android:text="Tìm kiếm"
             android:textSize="40sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <View
+            android:id="@+id/separatorView"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray"
@@ -32,6 +37,8 @@
             android:hint="Tìm kiếm quiz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:padding="8dp"
             android:gravity="center"
             android:layout_marginTop="10dp"
@@ -39,13 +46,13 @@
 
         <!-- Nút chọn danh mục -->
         <HorizontalScrollView
+            android:id="@+id/categoryScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fillViewport="true"
             android:scrollbars="none"
             android:overScrollMode="never">
 
-            <!-- ID này phải là categoryLayout để Java code nhận diện -->
             <LinearLayout
                 android:id="@+id/categoryLayout"
                 android:orientation="horizontal"
@@ -54,10 +61,9 @@
                 android:gravity="center"
                 android:layout_marginTop="10dp">
 
-                <!-- Các nút tĩnh có thể giữ lại hoặc load động từ Firebase -->
                 <Button
                     android:id="@+id/btnGrades"
-                    android:text="Grades"
+                    android:text="Subject 1"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
@@ -68,7 +74,7 @@
 
                 <Button
                     android:id="@+id/btnSubject"
-                    android:text="Subject"
+                    android:text="Subject 2"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
@@ -79,7 +85,7 @@
 
                 <Button
                     android:id="@+id/btnChatGpt"
-                    android:text="Chat GPT"
+                    android:text="Subject 3"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
@@ -90,7 +96,7 @@
 
                 <Button
                     android:id="@+id/mathButton"
-                    android:text="Math"
+                    android:text="Subject 4"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
@@ -101,7 +107,7 @@
 
                 <Button
                     android:id="@+id/scienceButton"
-                    android:text="Science"
+                    android:text="Subject 5"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
                     android:minWidth="80dp"
@@ -127,6 +133,16 @@
             android:src="@drawable/ic_quiz_search"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/tvNoResults"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Không tìm thấy kết quả phù hợp"
+            android:textSize="16sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
             android:visibility="gone"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

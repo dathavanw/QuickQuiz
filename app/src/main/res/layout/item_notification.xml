@@ -12,7 +12,7 @@
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginEnd="12dp"
-        android:src="@drawable/ic_notification" />
+        android:src="@drawable/ic_update" />
 
     <LinearLayout
         android:layout_width="0dp"
