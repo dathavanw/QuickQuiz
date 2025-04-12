@@ -11,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_quickquiz.database.Database;
 import com.example.app_quickquiz.repository.QuizRepository;
 import com.example.app_quickquiz.sharedpreferences.SharedPreferencesManager;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 
 public class StudentActivity extends AppCompatActivity {
     private TextView btnSignOut;
@@ -32,7 +34,7 @@ public class StudentActivity extends AppCompatActivity {
 
         txtCodeStartGame = findViewById(R.id.txtCodeStartGame);
         btnStartQuiz =findViewById(R.id.btnStartGame);
-        btnStartQuiz.setOnClickListener(v->getQuiz());
+        btnStartQuiz.setOnClickListener(v->checkQuizExistsById());
         screenstudent = findViewById(R.id.screenstudent);
         screenstudent.setBackgroundResource(R.drawable.animation_student_main);
 
@@ -51,22 +53,34 @@ public class StudentActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getQuiz(){
-//        String codeQuiz = txtCodeStartGame.getText().toString().trim();
-//        if(!codeQuiz.isEmpty()){
-//            quizRepository = new QuizRepository();
-//            quizRepository.getQuiz(codeQuiz, quiz -> {
-//                if (quiz != null) {
-//                    // Chuyển đến giao diện quiz
-//                    Intent intent = new Intent(StudentActivity.this, QuizActivity.class);
-//                //    intent.putExtra("quizId", quiz.getId());
-//                    startActivity(intent);
-//                } else {
-//                    Toast.makeText(StudentActivity.this, "Mã bài kiểm tra không hợp lệ!", Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//        }
+    public void checkQuizExistsById(){
+      String codeQuiz = txtCodeStartGame.getText().toString().trim();
+        if (codeQuiz.isEmpty()) {
+            Toast.makeText(this, "Vui lòng nhập mã bài quiz", Toast.LENGTH_SHORT).show();
+        }
+        int idQuiz;
+        try {
+            idQuiz = Integer.parseInt(codeQuiz);
+        }catch(NumberFormatException e) {
+            Toast.makeText(this, "Mã quiz phải là số", Toast.LENGTH_SHORT).show();
+            return; // thoát khỏi hàm nếu xảy ra lỗi
+        }
+        Database db = new Database();
+        db.checkQuizExistsById(idQuiz, (exists ,snapshot)->{
+            if(exists){
+                for (DataSnapshot quizSnap : snapshot.getChildren()) {
+                    String title = quizSnap.child("title").getValue(String.class);
+                    Toast.makeText(this, "Tìm thấy quiz: " + title, Toast.LENGTH_SHORT).show();
 
+                    // Chuyển sang màn hình làm bài nếu cần
+                    // Intent intent = new Intent(this, QuizActivity.class);
+                    // intent.putExtra("quizId", quizId);
+                    // startActivity(intent);
+                }
+            } else {
+                Toast.makeText(this, "Không tìm thấy bài quiz!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
 

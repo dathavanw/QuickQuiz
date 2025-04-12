@@ -10,7 +10,7 @@ public class QuizRepository {
         db = new Database();
     }
 
-    public void getQuiz(String quizCode, Database.Callback<Quiz> callback) {
-        db.getQuiz(quizCode, callback);
+    public void checkQuizExistsById(int id, Database.QuizExistCallback callback) {
+        db.checkQuizExistsById(id, callback);
     }
 }

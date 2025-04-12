@@ -145,7 +145,7 @@ public class SignInActivity extends AppCompatActivity{
                              startActivity(new Intent(SignInActivity.this, StudentActivity.class));
                          } else {
                              Log.d("DEBUG", "Role is student");
-                             startActivity(new Intent(SignInActivity.this, AccountActivity.class));
+                             startActivity(new Intent(SignInActivity.this, StudentActivity.class));
                          }
                          finish();
                      }

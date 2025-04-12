@@ -13,13 +13,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Database {
-    private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("users");
+    private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
     private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();
     private static final DatabaseReference FeedbackDatabase = FirebaseDatabase.getInstance().getReference("feedbacks");
-    private static final DatabaseReference quizRef  = FirebaseDatabase.getInstance().getReference("quizzes");
+    private static final DatabaseReference quizRef  = FirebaseDatabase.getInstance().getReference("Quizzes");
 //    public DatabaseReference getDatabaseReference(){
 //        return mDatabase;
 //    }
@@ -150,29 +151,45 @@ public class Database {
     }
 
     // lấy mã bài Quiz
-    public void getQuiz(String codeQuiz , Callback<Quiz> callback){
-        quizRef.child(codeQuiz);
-        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
+   // public void getQuiz(String codeQuiz , Callback<Quiz> callback){
+//        quizRef.child(codeQuiz);
+//        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                if (snapshot.exists()) {
+//                    Quiz quiz = snapshot.getValue(Quiz.class);
+//                    callback.onSuccess(quiz);
+//                } else {
+//                    callback.onSuccess(null);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//                callback.onError(error.toException());
+//            }
+//        });
+   // }
+
+    // kiểm tra sự tồn tại của quiz
+    public void checkQuizExistsById(int id , QuizExistCallback callback){
+        Query query = quizRef.orderByChild("id").equalTo(id);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    Quiz quiz = snapshot.getValue(Quiz.class);
-                    callback.onSuccess(quiz);
-                } else {
-                    callback.onSuccess(null);
-                }
+                callback.onResult(snapshot.exists(), snapshot);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                callback.onError(error.toException());
+                callback.onResult(false, null);
             }
         });
     }
 
-    public interface Callback<Quiz> {
-        void onSuccess(Quiz quiz);
-        void onError(Exception e);
+
+    public interface QuizExistCallback {
+        void onResult(boolean exists, DataSnapshot quizSnapshot);
     }
 
 
