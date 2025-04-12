@@ -1,7 +1,9 @@
 package com.example.app_quickquiz;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +17,15 @@ import com.example.app_quickquiz.model.QuestionWithAnswers;
 import com.example.app_quickquiz.repository.QuizRepository;
 
 import java.util.List;
+import java.util.Locale;
 
 public class QuizActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
    // private QuestionAdapter adapter;
    private QuizRepository quizRepository;
+    private CountDownTimer countDownTimer;
+    private TextView timerTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quiz);
 
         quizRepository = new QuizRepository();
-
+        timerTextView = findViewById(R.id.timerTextView);
         recyclerView = findViewById(R.id.rvQuestions);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -46,6 +51,7 @@ public class QuizActivity extends AppCompatActivity {
             public void onSuccess(List<QuestionWithAnswers> questionWithAnswersList) {
                 QuestionWithAnswersAdapter adapter = new QuestionWithAnswersAdapter(QuizActivity.this, questionWithAnswersList);
                 recyclerView.setAdapter(adapter);
+                startCountdown(time_limit);  // Bắt đầu đếm ngược
             }
 
             @Override
@@ -87,6 +93,29 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    private void startCountdown(int timeLimitInMinutes) {
+        timerTextView = findViewById(R.id.timerTextView);
+        long totalTimeInMillis = timeLimitInMinutes * 60 * 1000;
+
+        countDownTimer = new CountDownTimer(totalTimeInMillis, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                int minutes = (int) (millisUntilFinished / 1000) / 60;
+                int seconds = (int) (millisUntilFinished / 1000) % 60;
+                timerTextView.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
+            }
+
+            @Override
+            public void onFinish() {
+                timerTextView.setText("00:00");
+                // TODO: Nộp bài tự động hoặc hiện dialog báo hết giờ
+              //  submitQuizAutomatically();
+            }
+        };
+        countDownTimer.start();
     }
 
 }
