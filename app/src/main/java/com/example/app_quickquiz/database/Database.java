@@ -3,7 +3,9 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.app_quickquiz.model.Answer;
 import com.example.app_quickquiz.model.Feedback;
+import com.example.app_quickquiz.model.Question;
 import com.example.app_quickquiz.model.Quiz;
 import com.example.app_quickquiz.model.User;
 import com.example.app_quickquiz.repository.FeedBackRepository;
@@ -16,11 +18,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Database {
     private static final DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("Users");
     private static final FirebaseAuth mAuth  = FirebaseAuth.getInstance();
     private static final DatabaseReference FeedbackDatabase = FirebaseDatabase.getInstance().getReference("feedbacks");
     private static final DatabaseReference quizRef  = FirebaseDatabase.getInstance().getReference("Quizzes");
+    private static final DatabaseReference questionRef  = FirebaseDatabase.getInstance().getReference("Questions");
+    private static final DatabaseReference answerRef  = FirebaseDatabase.getInstance().getReference("Answers");
 //    public DatabaseReference getDatabaseReference(){
 //        return mDatabase;
 //    }
@@ -172,7 +179,7 @@ public class Database {
    // }
 
     // kiểm tra sự tồn tại của quiz
-    public void checkQuizExistsById(int id , QuizExistCallback callback){
+    public void checkQuizExistsById(String id , QuizExistCallback callback){
         Query query = quizRef.orderByChild("id").equalTo(id);
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -193,4 +200,76 @@ public class Database {
     }
 
 
+
+    // lấy danh sách câu hỏi của bài Quiz
+    public void getQuestionByQuizID(String quiz_id, OnGetDataListener <List<Question>> listener){
+            questionRef.orderByChild("quiz_id").equalTo(quiz_id)
+           .addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                List<Question> questions = new ArrayList<>();
+                for (DataSnapshot questionSnapshot : snapshot.getChildren()) {
+                    Question question = questionSnapshot.getValue(Question.class);
+                    if (question != null) {
+                        questions.add(question);
+                    }
+                }
+                listener.onSuccess(questions);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                listener.onFailure(error.toException());
+            }
+        });
+    }
+    // Lấy danh sách đáp án theo question_id
+    public void getAnswersByQuestionId(String questionId, OnGetDataListener<List<Answer>> listener) {
+        answerRef.orderByChild("question_id").equalTo(questionId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        List<Answer> answers = new ArrayList<>();
+                        for (DataSnapshot answerSnapshot : snapshot.getChildren()) {
+                            Log.d("FirebaseAnswer",answerSnapshot.toString());
+                            Answer answer = answerSnapshot.getValue(Answer.class);
+                            if (answer != null) {
+                                answers.add(answer);
+                            }
+                        }
+                        listener.onSuccess(answers);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        listener.onFailure(error.toException());
+                    }
+                });
+    }
+
+    public interface OnGetDataListener<T> {
+        void onSuccess(T data);
+        void onFailure(Exception e);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

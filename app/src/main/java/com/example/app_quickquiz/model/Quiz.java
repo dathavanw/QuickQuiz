@@ -1,10 +1,11 @@
 package com.example.app_quickquiz.model;
 
 public class Quiz {
-    private String id, title, description, created_by , created_at, category_id;
-    private long time_limit ;
+    private String  id,title, description , created_at;
+    private int category_id,created_by;
+    private int time_limit ;
 
-    public Quiz(String id, String title, String description, String created_by, String created_at, String category_id, long time_limit) {
+    public Quiz(String id, String title, String description, int created_by, String created_at, int category_id, int time_limit) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -41,11 +42,11 @@ public class Quiz {
         this.description = description;
     }
 
-    public String getCreated_by() {
+    public int getCreated_by() {
         return created_by;
     }
 
-    public void setCreated_by(String created_by) {
+    public void setCreated_by(int created_by) {
         this.created_by = created_by;
     }
 
@@ -57,19 +58,19 @@ public class Quiz {
         this.created_at = created_at;
     }
 
-    public String getCategory_id() {
+    public int getCategory_id() {
         return category_id;
     }
 
-    public void setCategory_id(String category_id) {
+    public void setCategory_id(int category_id) {
         this.category_id = category_id;
     }
 
-    public long getTime_limit() {
+    public int getTime_limit() {
         return time_limit;
     }
 
-    public void setTime_limit(long time_limit) {
+    public void setTime_limit(int time_limit) {
         this.time_limit = time_limit;
     }
 }

@@ -1,41 +1,39 @@
 package com.example.app_quickquiz.model;
 
 public class Question {
-    private int id;             // ID của câu hỏi
-    private int quizId;         // ID của bài quiz mà câu hỏi thuộc về
+    private String id;             // ID của câu hỏi
+    private String quiz_id;         // ID của bài quiz mà câu hỏi thuộc về
     private String content;     // Nội dung câu hỏi
-    private String questionType;
+    private String question_type;
 
 
     public Question() {}
 
     // Constructor đầy đủ
-    public Question(int id, int quizId, String content, String questionType) {
+        public Question(String content, String id, String questionType, String quizId) {
         this.id = id;
-        this.quizId = quizId;
+        this.quiz_id = quizId;
         this.content = content;
-        this.questionType = questionType;
+        this.question_type = questionType;
     }
 
-    // Getter và Setter cho 'id'
-    public int getId() {
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    // Getter và Setter cho 'quizId'
-    public int getQuizId() {
-        return quizId;
+    public String getQuiz_id() {
+        return quiz_id;
     }
 
-    public void setQuizId(int quizId) {
-        this.quizId = quizId;
+    public void setQuiz_id(String quiz_id) {
+        this.quiz_id = quiz_id;
     }
 
-    // Getter và Setter cho 'content'
     public String getContent() {
         return content;
     }
@@ -44,12 +42,11 @@ public class Question {
         this.content = content;
     }
 
-    // Getter và Setter cho 'questionType'
-    public String getQuestionType() {
-        return questionType;
+    public String getQuestion_type() {
+        return question_type;
     }
 
-    public void setQuestionType(String questionType) {
-        this.questionType = questionType;
+    public void setQuestion_type(String question_type) {
+        this.question_type = question_type;
     }
 }

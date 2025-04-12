@@ -3,6 +3,7 @@ package com.example.app_quickquiz;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -12,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_quickquiz.database.Database;
+import com.example.app_quickquiz.model.Quiz;
 import com.example.app_quickquiz.repository.QuizRepository;
 import com.example.app_quickquiz.sharedpreferences.SharedPreferencesManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,25 +59,23 @@ public class StudentActivity extends AppCompatActivity {
       String codeQuiz = txtCodeStartGame.getText().toString().trim();
         if (codeQuiz.isEmpty()) {
             Toast.makeText(this, "Vui lòng nhập mã bài quiz", Toast.LENGTH_SHORT).show();
+
+        }else {
+          //  Toast.makeText(this, "Mã quiz phải là số", Toast.LENGTH_SHORT).show();
         }
-        int idQuiz;
-        try {
-            idQuiz = Integer.parseInt(codeQuiz);
-        }catch(NumberFormatException e) {
-            Toast.makeText(this, "Mã quiz phải là số", Toast.LENGTH_SHORT).show();
-            return; // thoát khỏi hàm nếu xảy ra lỗi
-        }
-        Database db = new Database();
-        db.checkQuizExistsById(idQuiz, (exists ,snapshot)->{
+        quizRepository = new QuizRepository();
+        quizRepository.checkQuizExistsById(codeQuiz, (exists ,snapshot)->{
             if(exists){
                 for (DataSnapshot quizSnap : snapshot.getChildren()) {
-                    String title = quizSnap.child("title").getValue(String.class);
-                    Toast.makeText(this, "Tìm thấy quiz: " + title, Toast.LENGTH_SHORT).show();
+//                    String time_limit = quizSnap.child("title").getValue(String.class);
+                    Quiz quiz = quizSnap.getValue(Quiz.class);
+                    //Toast.makeText(this, "Tìm thấy quiz: " + title, Toast.LENGTH_SHORT).show();
 
-                    // Chuyển sang màn hình làm bài nếu cần
-                    // Intent intent = new Intent(this, QuizActivity.class);
-                    // intent.putExtra("quizId", quizId);
-                    // startActivity(intent);
+                    // Chuyển sang màn hình làm bài
+                    Intent intent = new Intent(StudentActivity.this, QuizActivity.class);
+                    intent.putExtra("quizId", codeQuiz);
+                    intent.putExtra("timeLimit", quiz.getTime_limit());
+                    startActivity(intent);
                 }
             } else {
                 Toast.makeText(this, "Không tìm thấy bài quiz!", Toast.LENGTH_SHORT).show();
