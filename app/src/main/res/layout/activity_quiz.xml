@@ -57,8 +57,8 @@
 
         <ImageView
             android:id="@+id/imgQuestion"
-            android:layout_width="276dp"
-            android:layout_height="196dp"
+            android:layout_width="210dp"
+            android:layout_height="136dp"
             android:scaleType="centerCrop"
             android:src="@drawable/sample_image" />
 
