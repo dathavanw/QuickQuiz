@@ -11,13 +11,16 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.example.app_quickquiz.SignInActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,29 +61,36 @@ public class ActivityHoatDong extends AppCompatActivity {
             String itemName = getResources().getResourceEntryName(item.getItemId());
             switch (itemName) {
                 case "nav_home":
-                    startActivity(new Intent(ActivityHoatDong.this, GiaoVienMainActivity.class));
+                    startActivity(new Intent(this, GiaoVienMainActivity.class));
+                    return true;
+
+                case "nav_activity":
+                    startActivity(new Intent(this, ActivityHoatDong.class));
                     return true;
                 case "nav_account":
-                    startActivity(new Intent(ActivityHoatDong.this, SettingActivity.class));
-                    return true;
                 case "nav_course":
-                    startActivity(new Intent(ActivityHoatDong.this, CourseActivity.class));
-                    return true;
                 case "nav_search":
-                    startActivity(new Intent(ActivityHoatDong.this, SearchActivity.class));
-                    return true;
-                case "nav_activity":
-                    return true;
                 default:
-                    return false;
+                    Toast.makeText(this, "Chức năng đang được cập nhật!", Toast.LENGTH_SHORT).show();
+                    return true;
             }
         });
 
+
         btnCreateQuiz.setOnClickListener(v -> {
-            Intent intent = new Intent(ActivityHoatDong.this, AddQuizActivity.class);
+            Intent intent = new Intent(ActivityHoatDong.this, GiaoVienMainActivity.class);
             startActivity(intent);
         });
 
+        Button btnSignOut = findViewById(R.id.btnSignOut);
+        btnSignOut.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut(); // Đăng xuất Firebase
+
+            // Chuyển về màn hình đăng nhập
+            Intent intent = new Intent(ActivityHoatDong.this, SignInActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xoá backstack
+            startActivity(intent);
+        });
         loadQuizList();
     }
 
@@ -116,11 +126,17 @@ public class ActivityHoatDong extends AppCompatActivity {
     private void loadQuizList() {
         DatabaseReference quizRef = FirebaseDatabase.getInstance().getReference("Quizzes");
         quizListLayout.removeAllViews();
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot quizSnap : dataSnapshot.getChildren()) {
+                    String createdBy = quizSnap.child("created_by").getValue(String.class);
+
+                    // Chỉ hiển thị quiz được tạo bởi người đang đăng nhập
+                    if (!userId.equals(createdBy)) continue;
+
                     String quizTitle = quizSnap.child("title").getValue(String.class);
                     String quizId = quizSnap.child("id").getValue(String.class);
                     if (quizTitle == null || quizId == null) continue;
@@ -155,6 +171,14 @@ public class ActivityHoatDong extends AppCompatActivity {
                                     titleText.setGravity(Gravity.CENTER);
                                     innerLayout.addView(titleText);
 
+                                    TextView quizIdText = new TextView(ActivityHoatDong.this);
+                                    quizIdText.setText("ID: " + quizId);
+                                    quizIdText.setTextSize(12);
+                                    quizIdText.setTextColor(ContextCompat.getColor(ActivityHoatDong.this, android.R.color.darker_gray));
+                                    quizIdText.setGravity(Gravity.CENTER);
+                                    innerLayout.addView(quizIdText);
+
+
                                     TextView questionCount = new TextView(ActivityHoatDong.this);
                                     questionCount.setText(count + " Qs");
                                     questionCount.setTextSize(14);
@@ -171,10 +195,8 @@ public class ActivityHoatDong extends AppCompatActivity {
                                                     startActivity(intent);
                                                 })
                                                 .setNegativeButton("Xoá", (dialog, which) -> {
-                                                    // Xoá quiz
                                                     FirebaseDatabase.getInstance().getReference("Quizzes").child(quizId).removeValue();
 
-                                                    // Xoá tất cả câu hỏi liên quan đến quiz
                                                     FirebaseDatabase.getInstance().getReference("Questions")
                                                             .orderByChild("quiz_id").equalTo(quizId)
                                                             .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -184,7 +206,6 @@ public class ActivityHoatDong extends AppCompatActivity {
                                                                         String questionId = q.child("id").getValue(String.class);
                                                                         q.getRef().removeValue();
 
-                                                                        // Xoá đáp án của câu hỏi
                                                                         if (questionId != null) {
                                                                             FirebaseDatabase.getInstance().getReference("Answers")
                                                                                     .orderByChild("question_id").equalTo(questionId)
@@ -202,7 +223,6 @@ public class ActivityHoatDong extends AppCompatActivity {
                                                                         }
                                                                     }
 
-                                                                    // Sau khi đã xóa tất cả, mới gọi load lại danh sách
                                                                     loadQuizList();
                                                                 }
 
@@ -225,9 +245,10 @@ public class ActivityHoatDong extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {}
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
+
 
     @Override
     protected void onResume() {

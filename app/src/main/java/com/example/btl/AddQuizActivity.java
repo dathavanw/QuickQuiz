@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.button.MaterialButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
@@ -124,13 +125,13 @@ public class AddQuizActivity extends AppCompatActivity {
         }
 
         quizId = String.valueOf(System.currentTimeMillis());
-
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Map<String, Object> quizMap = new HashMap<>();
         quizMap.put("id", quizId);
         quizMap.put("title", quizTitle);
         quizMap.put("time_limit", timeLimit);
-        quizMap.put("category_id", 1);
-        quizMap.put("created_by", 2);
+        quizMap.put("category_id", "1");
+        quizMap.put("created_by", userId);
         quizMap.put("description", "A basic knowledge quiz.");
 
         String currentTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault()).format(new Date());

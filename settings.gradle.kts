@@ -19,6 +19,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "BTL"
+rootProject.name = "App_QuickQuiz"
 include(":app")
  

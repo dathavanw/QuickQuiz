@@ -1,14 +1,23 @@
 package com.example.btl;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,6 +29,12 @@ public class QuizDetailActivity extends AppCompatActivity {
     private LinearLayout layoutQuestionList;
     private TextView txtTitle;
     private String quizId;
+    private GridLayout quizListLayout;
+    private Button btnCreateQuiz;
+
+    private boolean isMenuOpen = false;
+    private ImageButton menuButton;
+    private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,9 +44,70 @@ public class QuizDetailActivity extends AppCompatActivity {
         layoutQuestionList = findViewById(R.id.layoutQuestionList);
         txtTitle = findViewById(R.id.txtDetailTitle);
         quizId = getIntent().getStringExtra("quizId");
+        menuButton = findViewById(R.id.menu_button);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        bottomNavigationView.setSelectedItemId(R.id.nav_activity);
+
+        bottomNavigationView.post(() -> {
+            bottomNavigationView.setTranslationX(-bottomNavigationView.getWidth());
+            bottomNavigationView.setAlpha(0f);
+            bottomNavigationView.setVisibility(BottomNavigationView.GONE);
+        });
+
+        menuButton.setOnClickListener(v -> toggleMenu());
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            String itemName = getResources().getResourceEntryName(item.getItemId());
+            switch (itemName) {
+                case "nav_home":
+                    startActivity(new Intent(QuizDetailActivity.this, GiaoVienMainActivity.class));
+                    return true;
+                case "nav_account":
+                    startActivity(new Intent(QuizDetailActivity.this, SettingActivity.class));
+                    return true;
+                case "nav_course":
+                    startActivity(new Intent(QuizDetailActivity.this, CourseActivity.class));
+                    return true;
+                case "nav_search":
+                    startActivity(new Intent(QuizDetailActivity.this, SearchActivity.class));
+                    return true;
+                case "nav_activity":
+                    return true;
+                default:
+                    return false;
+            }
+        });
         loadQuizTitle();
         loadQuestions();
+    }
+    private void toggleMenu() {
+        ObjectAnimator animatorX;
+        ObjectAnimator animatorAlpha;
+
+        if (isMenuOpen) {
+            animatorX = ObjectAnimator.ofFloat(bottomNavigationView, "translationX", -bottomNavigationView.getWidth());
+            animatorAlpha = ObjectAnimator.ofFloat(bottomNavigationView, "alpha", 1f, 0f);
+            animatorX.setDuration(300);
+            animatorAlpha.setDuration(200);
+            animatorX.start();
+            animatorAlpha.start();
+            animatorX.addListener(new AnimatorListenerAdapter() {
+                @Override
+                public void onAnimationEnd(Animator animation) {
+                    bottomNavigationView.setVisibility(BottomNavigationView.GONE);
+                }
+            });
+        } else {
+            bottomNavigationView.setVisibility(BottomNavigationView.VISIBLE);
+            animatorX = ObjectAnimator.ofFloat(bottomNavigationView, "translationX", 0f);
+            animatorAlpha = ObjectAnimator.ofFloat(bottomNavigationView, "alpha", 0f, 1f);
+            animatorX.setDuration(300);
+            animatorAlpha.setDuration(200);
+            animatorX.start();
+            animatorAlpha.start();
+        }
+        isMenuOpen = !isMenuOpen;
     }
 
     private void loadQuizTitle() {
@@ -41,6 +117,8 @@ public class QuizDetailActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 String title = snapshot.child("title").getValue(String.class);
                 txtTitle.setText("Quiz: " + title);
+
+
             }
 
             @Override

@@ -24,13 +24,58 @@
         <activity android:name=".AfterAddActivity" />
         <activity android:name=".ActivityHoatDong"
             android:exported="true">
+
+        </activity>
+        <activity android:name=".QuizDetailActivity"></activity>
+        <activity
+            android:name="com.example.app_quickquiz.SignUpActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.AccountActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.ForgotPasswordActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name="com.example.app_quickquiz.SupportCompleteActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.VerifyCodeActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.SupportActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.QuizActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.SignInActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name="com.example.app_quickquiz.StudentActivity"
+            android:exported="true" />
+        <activity
+            android:name="com.example.app_quickquiz.WhoUsingActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QuizDetailActivity"></activity>
+        <activity
+            android:name="com.example.app_quickquiz.OnboardingActivity"
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
