@@ -15,7 +15,7 @@ import com.example.app_quickquiz.database.Database;
 import com.example.app_quickquiz.model.Answer;
 import com.example.app_quickquiz.model.QuestionWithAnswers;
 import com.example.app_quickquiz.repository.QuizRepository;
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 
 import java.util.List;
 import java.util.Locale;
@@ -35,7 +35,7 @@ public class QuizActivity extends AppCompatActivity {
 
         quizRepository = new QuizRepository();
         timerTextView = findViewById(R.id.timerTextView);
-        recyclerView = findViewById(R.id.rvQuestions);
+        recyclerView = findViewById(R.id.tvQuestion);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 

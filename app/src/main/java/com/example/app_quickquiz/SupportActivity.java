@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app_quickquiz.repository.FeedBackRepository;
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 
 public class SupportActivity extends AppCompatActivity {
     private Button btnSendMessage;

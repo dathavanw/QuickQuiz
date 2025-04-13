@@ -16,13 +16,15 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_quickquiz.activity.HistoryActivity;
+import com.example.app_quickquiz.activity.SearchQuizActivity;
 import com.example.app_quickquiz.database.Database;
 import com.example.app_quickquiz.model.Quiz;
 import com.example.app_quickquiz.repository.QuizRepository;
 import com.example.app_quickquiz.sharedpreferences.SharedPreferencesManager;
 import com.example.btl.ActivityHoatDong;
 import com.example.btl.GiaoVienMainActivity;
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -77,13 +79,16 @@ public class StudentActivity extends AppCompatActivity {
                     return true;
 
                 case "nav_activity":
-                    startActivity(new Intent(this, AccountActivity.class));
+                    startActivity(new Intent(this, HistoryActivity.class));
                     return true;
                 case "nav_account":
                     startActivity(new Intent(this, AccountActivity.class));
                     return true;
-                case "nav_course":
                 case "nav_search":
+                    startActivity(new Intent(this, SearchQuizActivity.class));
+                    return true;
+                case "nav_course":
+
                 default:
                     Toast.makeText(this, "Chức năng đang được cập nhật!", Toast.LENGTH_SHORT).show();
                     return true;

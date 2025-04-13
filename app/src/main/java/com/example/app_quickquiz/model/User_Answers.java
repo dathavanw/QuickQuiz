@@ -1,17 +1,17 @@
 package com.example.app_quickquiz.model;
 
 public class User_Answers {
-    private int id;
+    private String id;
     private String user_id,question_id,answer_id ,quiz_result_id;
 
-    public User_Answers(int id) {
+    public User_Answers(String id) {
         this.id = id;
     }
 
     public User_Answers() {
     }
 
-    public User_Answers(int id, String user_id, String question_id, String answer_id, String quiz_result_id) {
+    public User_Answers(String id, String user_id, String question_id, String answer_id, String quiz_result_id) {
         this.id = id;
         this.user_id = user_id;
         this.question_id = question_id;
@@ -19,11 +19,11 @@ public class User_Answers {
         this.quiz_result_id = quiz_result_id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

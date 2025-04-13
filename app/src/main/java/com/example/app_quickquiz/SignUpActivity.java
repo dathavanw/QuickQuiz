@@ -31,7 +31,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app_quickquiz.model.User;
 import com.example.app_quickquiz.repository.UserRepository;
 
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 

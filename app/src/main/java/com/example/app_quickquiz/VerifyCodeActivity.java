@@ -4,7 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 
 public class VerifyCodeActivity extends AppCompatActivity {
     @Override

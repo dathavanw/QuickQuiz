@@ -208,5 +208,14 @@
                 android:textSize="24sp" />
         </LinearLayout>
     </LinearLayout>
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|start"
+        android:layout_margin="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
+        <include layout="@layout/bottom_nav_layout" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

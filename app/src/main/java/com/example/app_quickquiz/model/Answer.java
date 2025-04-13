@@ -1,13 +1,13 @@
 package com.example.app_quickquiz.model;
 
 public class Answer {
-  //  private String id;
+    private String id;
     private String question_id;
     private String answer;
     private boolean is_correct;
 
-    public Answer(  String content, boolean isCorrect,String  questionId) {
-    //    this.id = id;
+    public Answer( String id, String content, boolean isCorrect,String  questionId) {
+        this.id = id;
         this.answer = content;
         this.is_correct = isCorrect;
         this.question_id = questionId;
@@ -32,7 +32,9 @@ public class Answer {
         this.question_id = question_id;
     }
 
-    public boolean isIs_correct() {
+
+
+    public boolean isCorrect() {
         return is_correct;
     }
 
@@ -40,9 +42,13 @@ public class Answer {
         this.is_correct = is_correct;
     }
 
-//    public String getId() {
-//        return id;
-//    }
+    public int getContent() {
+        return 0;
+    }
+
+    public String getId() {
+        return id;
+    }
 //
 //    public void setId(String id) {
 //        this.id = id;

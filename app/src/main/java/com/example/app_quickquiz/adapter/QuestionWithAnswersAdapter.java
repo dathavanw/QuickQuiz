@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 import com.example.app_quickquiz.model.Answer;
 import com.example.app_quickquiz.model.QuestionWithAnswers;
 

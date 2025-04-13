@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 
 public class WhoUsingActivity extends AppCompatActivity {
 

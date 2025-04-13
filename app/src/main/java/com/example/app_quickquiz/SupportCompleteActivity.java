@@ -7,7 +7,7 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.btl.R;
+import com.example.app_quickquiz.R;
 
 public class SupportCompleteActivity extends AppCompatActivity {
 
