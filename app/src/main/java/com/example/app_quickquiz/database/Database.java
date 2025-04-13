@@ -8,6 +8,8 @@ import com.example.app_quickquiz.model.Feedback;
 import com.example.app_quickquiz.model.Question;
 import com.example.app_quickquiz.model.Quiz;
 import com.example.app_quickquiz.model.User;
+import com.example.app_quickquiz.model.User_Answers;
+import com.example.app_quickquiz.model.User_Quiz_Results;
 import com.example.app_quickquiz.repository.FeedBackRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -103,6 +105,7 @@ public class Database {
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = mAuth.getCurrentUser();
+                        String userID = user.getUid();
                         callback.onSuccess(user);
                     } else {
                         Log.e("AuthError", "Lỗi đăng nhập: ", task.getException());
@@ -158,7 +161,7 @@ public class Database {
     }
 
     // lấy mã bài Quiz
-   // public void getQuiz(String codeQuiz , Callback<Quiz> callback){
+//    public void getQuiz(String codeQuiz , Callback<Quiz> callback){
 //        quizRef.child(codeQuiz);
 //        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
 //            @Override
@@ -176,7 +179,7 @@ public class Database {
 //                callback.onError(error.toException());
 //            }
 //        });
-   // }
+//    }
 
     // kiểm tra sự tồn tại của quiz
     public void checkQuizExistsById(String id , QuizExistCallback callback){
@@ -251,6 +254,41 @@ public class Database {
         void onSuccess(T data);
         void onFailure(Exception e);
     }
+
+
+
+
+
+
+    // lưu kết quả bài làm
+    public void saveUserQuizResults(User_Quiz_Results userQuizResult) {
+        DatabaseReference quizResultsRef = FirebaseDatabase.getInstance().getReference("User_Quiz_Results");
+        String key = quizResultsRef.push().getKey();
+        quizResultsRef.child(key).setValue(userQuizResult);
+    }
+
+    // lưu chi tiết bài làm
+    public void saveUserAnswers(List<User_Answers> userAnswers) {
+        DatabaseReference userAnswersRef = FirebaseDatabase.getInstance().getReference("User_Answers");
+        for (User_Answers answer : userAnswers) {
+            String key = userAnswersRef.push().getKey();
+            userAnswersRef.child(key).setValue(answer);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

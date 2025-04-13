@@ -64,8 +64,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         userRepository = new UserRepository();
-
-
         selectedRole = getIntent().getStringExtra("role");
 
         name = findViewById(R.id.txtName);

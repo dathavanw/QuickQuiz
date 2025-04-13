@@ -130,6 +130,7 @@ public class SignInActivity extends AppCompatActivity{
                          } else {
                              sharedPreferencesManager.clearLoginCredentials();
                          }
+                         //truy vấn vai trò người dùng
                      }
 
                      @Override
