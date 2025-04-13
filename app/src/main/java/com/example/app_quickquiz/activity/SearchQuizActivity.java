@@ -1,26 +1,19 @@
 package com.example.app_quickquiz.activity;
 
 import android.os.Bundle;
-import android.view.inputmethod.EditorInfo;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import android.widget.*;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.app_quickquiz.R;
 import com.example.app_quickquiz.adapter.QuizAdapter;
 import com.example.app_quickquiz.model.Quiz;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +21,13 @@ import java.util.List;
 public class SearchQuizActivity extends AppCompatActivity {
 
     private EditText searchEditText;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewQuiz;
+    private QuizAdapter quizAdapter;
+    private List<Quiz> quizList = new ArrayList<>();
+    private DatabaseReference quizRef;
+
     private ImageView quizImage;
     private TextView tvNoResults;
-    private QuizAdapter quizAdapter;
-    private List<Quiz> quizList;
-
-    private DatabaseReference databaseReference;
 
     private Button btnGrades, btnSubject, btnChatGpt, mathButton, scienceButton;
 
@@ -45,7 +38,7 @@ public class SearchQuizActivity extends AppCompatActivity {
 
         // Ánh xạ view
         searchEditText = findViewById(R.id.searchEditText);
-        recyclerView = findViewById(R.id.recyclerViewQuiz);
+        recyclerViewQuiz = findViewById(R.id.recyclerViewQuiz);
         quizImage = findViewById(R.id.quizImage);
         tvNoResults = findViewById(R.id.tvNoResults);
 
@@ -55,93 +48,114 @@ public class SearchQuizActivity extends AppCompatActivity {
         mathButton = findViewById(R.id.mathButton);
         scienceButton = findViewById(R.id.scienceButton);
 
-        // Khởi tạo RecyclerView
-        quizList = new ArrayList<>();
-        //quizAdapter = new QuizAdapter(this, quizList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(quizAdapter);
+        recyclerViewQuiz.setLayoutManager(new LinearLayoutManager(this));
+        quizAdapter = new QuizAdapter(quizList);
+        recyclerViewQuiz.setAdapter(quizAdapter);
 
-        // Firebase
-        databaseReference = FirebaseDatabase.getInstance().getReference("quizzes");
+        quizRef = FirebaseDatabase.getInstance().getReference("Quizzes");
 
-        // Xử lý tìm kiếm theo văn bản
-        searchEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String keyword = searchEditText.getText().toString().trim();
-                if (!keyword.isEmpty()) {
-                    searchQuiz(keyword);
-                }
-                return true;
+        // Load tất cả quiz khi mở app
+        loadAllQuizzes();
+
+        // Lắng nghe nhập liệu tìm kiếm
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String keyword = s.toString().trim().toLowerCase();
+                searchQuizByKeyword(keyword);
             }
-            return false;
+            @Override public void afterTextChanged(Editable s) {}
         });
 
-        // Xử lý tìm kiếm theo nút nhấn
-        btnGrades.setOnClickListener(v -> fetchQuizzesByCategory("Subject 1"));
-        btnSubject.setOnClickListener(v -> fetchQuizzesByCategory("Subject 2"));
-        btnChatGpt.setOnClickListener(v -> fetchQuizzesByCategory("Subject 3"));
-        mathButton.setOnClickListener(v -> fetchQuizzesByCategory("Subject 4"));
-        scienceButton.setOnClickListener(v -> fetchQuizzesByCategory("Subject 5"));
+        // Gán sự kiện click cho các nút danh mục
+        btnGrades.setOnClickListener(v -> searchQuizByCategory("Grades"));
+        btnSubject.setOnClickListener(v -> searchQuizByCategory("Subject"));
+        btnChatGpt.setOnClickListener(v -> searchQuizByCategory("Chat GPT"));
+        mathButton.setOnClickListener(v -> searchQuizByCategory("Math"));
+        scienceButton.setOnClickListener(v -> searchQuizByCategory("Language"));
     }
 
-    // Tìm kiếm theo từ khóa
-    private void searchQuiz(String keyword) {
-        fetchQuizzesByKeyword(keyword);
-    }
-
-    // Lấy danh sách quiz theo từ khóa
-    private void fetchQuizzesByKeyword(String keyword) {
-        databaseReference.orderByChild("title").addListenerForSingleValueEvent(new ValueEventListener() {
+    private void loadAllQuizzes() {
+        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 quizList.clear();
-                for (DataSnapshot quizSnapshot : snapshot.getChildren()) {
-                    Quiz quiz = quizSnapshot.getValue(Quiz.class);
-                    if (quiz != null && quiz.getTitle().toLowerCase().contains(keyword.toLowerCase())) {
-                        quizList.add(quiz);
-                    }
-                }
-                quizAdapter.notifyDataSetChanged();
-                handleEmptyResult();
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // Có thể thêm xử lý lỗi nếu cần
-            }
-        });
-    }
-
-    // Lấy danh sách quiz theo danh mục
-    private void fetchQuizzesByCategory(String category) {
-        databaseReference.orderByChild("category").equalTo(category).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                quizList.clear();
-                for (DataSnapshot quizSnapshot : snapshot.getChildren()) {
-                    Quiz quiz = quizSnapshot.getValue(Quiz.class);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Quiz quiz = dataSnapshot.getValue(Quiz.class);
                     if (quiz != null) {
                         quizList.add(quiz);
+                        Log.d("FIREBASE", "Quiz loaded: " + quiz.getTitle());
                     }
                 }
-                quizAdapter.notifyDataSetChanged();
-                handleEmptyResult();
+                updateUI();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("FIREBASE", "Firebase error: " + error.getMessage());
             }
         });
     }
 
-    // Kiểm tra nếu không có kết quả thì hiển thị thông báo
-    private void handleEmptyResult() {
+
+    private void searchQuizByKeyword(String keyword) {
+        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                quizList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Quiz quiz = dataSnapshot.getValue(Quiz.class);
+                    if (quiz != null) {
+                        if (quiz.getTitle().toLowerCase().contains(keyword)
+                                || quiz.getDescription().toLowerCase().contains(keyword)) {
+                            quizList.add(quiz);
+                        }
+                    }
+                }
+                updateUI();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SearchQuizActivity.this, "Search error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void searchQuizByCategory(String categoryName) {
+        quizRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                quizList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Quiz quiz = dataSnapshot.getValue(Quiz.class);
+                    if (quiz != null && quiz.getTitle().toLowerCase().contains(categoryName.toLowerCase())) {
+                        quizList.add(quiz);
+                    }
+                }
+                updateUI();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(SearchQuizActivity.this, "Category search error", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void updateUI() {
+        quizAdapter.notifyDataSetChanged();
+
         if (quizList.isEmpty()) {
+            recyclerViewQuiz.setVisibility(View.GONE);
             quizImage.setVisibility(View.VISIBLE);
             tvNoResults.setVisibility(View.VISIBLE);
+            tvNoResults.setText("No quizzes found.");
         } else {
+            recyclerViewQuiz.setVisibility(View.VISIBLE);
             quizImage.setVisibility(View.GONE);
             tvNoResults.setVisibility(View.GONE);
         }
     }
+
 }
