@@ -54,7 +54,7 @@ public class AddQuizActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (getResources().getResourceEntryName(item.getItemId())) {
                 case "nav_home":
-                    startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, GiaoVienMainActivity.class));
                     return true;
                 case "nav_activity":
                     startActivity(new Intent(this, ActivityHoatDong.class));

@@ -6,7 +6,6 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class GiaoVienMainActivity extends AppCompatActivity {
 
     private boolean isMenuOpen = false;
     private BottomNavigationView bottomNavigationView;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         menuButton.setOnClickListener(v -> toggleMenu());
 
         txtCreateQuiz.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, AddQuizActivity.class);
+            Intent intent = new Intent(GiaoVienMainActivity.this, AddQuizActivity.class);
             startActivity(intent);
         });
 

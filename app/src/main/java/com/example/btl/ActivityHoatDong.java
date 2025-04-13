@@ -3,7 +3,6 @@ package com.example.btl;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -59,7 +58,7 @@ public class ActivityHoatDong extends AppCompatActivity {
             String itemName = getResources().getResourceEntryName(item.getItemId());
             switch (itemName) {
                 case "nav_home":
-                    startActivity(new Intent(ActivityHoatDong.this, MainActivity.class));
+                    startActivity(new Intent(ActivityHoatDong.this, GiaoVienMainActivity.class));
                     return true;
                 case "nav_account":
                     startActivity(new Intent(ActivityHoatDong.this, SettingActivity.class));
