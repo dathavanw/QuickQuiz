@@ -1,6 +1,7 @@
 package com.example.app_quickquiz;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,11 +29,23 @@ public class StudentActivity extends AppCompatActivity {
     private QuizRepository quizRepository;
     private SharedPreferencesManager sharedPreferencesManager;
     private FirebaseAuth mAuth;
+    private String userId1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         btnSignOut = findViewById(R.id.tvSignOut);
+
+
+
+        // userID được truyền từ màn hình đăng nhập sang
+//        userId1 = getIntent().getStringExtra("userId");
+//        Log.d("USER_ID Ở MÀN HÌNH CHÍNH", "Giá Trị: " + userId1);
+        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        userId1 = preferences.getString("userId", null);
+        Log.d("USER_ID TỪ SHARED_PREFERENCES", "Giá Trị: " + userId1);
+
+
 
         txtCodeStartGame = findViewById(R.id.txtCodeStartGame);
         btnStartQuiz =findViewById(R.id.btnStartGame);
@@ -75,6 +88,7 @@ public class StudentActivity extends AppCompatActivity {
                     Intent intent = new Intent(StudentActivity.this, QuizActivity.class);
                     intent.putExtra("quizId", codeQuiz);
                     intent.putExtra("timeLimit", quiz.getTime_limit());
+                 //   intent.putExtra("userId2", userId1);
                     startActivity(intent);
                 }
             } else {

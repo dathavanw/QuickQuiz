@@ -3,6 +3,7 @@ package com.example.app_quickquiz;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class QuizActivity extends AppCompatActivity {
     private Button btnSubmit;
 
     private String quiz_id;
-    String userId = "Xf5rvgzTeAYtslLZV3wmD8DN3V53";   // id giả đẻ debug
+    private String userId3 ;
     private List<QuestionWithAnswers> questionList;
     private String quizResultId; // Khai báo biến ở mức lớp
 
@@ -54,6 +55,13 @@ public class QuizActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.rvQuestions);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+
+        SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+        userId3 = preferences.getString("userId", null);
+        Log.d("USER_ID TỪ SHARED_PREFERENCES", "Giá Trị: " + userId3);
+
+
 
 
         quiz_id = getIntent().getStringExtra("quizId");
@@ -125,7 +133,7 @@ public class QuizActivity extends AppCompatActivity {
 
             // Xử lý tiếp theo (ví dụ: gửi danh sách câu trả lời lên backend)
             List<User_Answers> userAnswers = getUserAnswersFromRecyclerView();
-            quizRepository.submitQuizResults(userId, quiz_id, userAnswers);
+            quizRepository.submitQuizResults(userId3, quiz_id, userAnswers);
             // Nộp bài và hiển thị điểm
             quizRepository.calculateScore(userAnswers, new QuizRepository.ScoreCallback() {
                 @Override
@@ -167,12 +175,12 @@ public class QuizActivity extends AppCompatActivity {
                 if (selectedAnswerId != null) {
                     // Tạo đối tượng User_Answers và thêm vào danh sách
                     userAnswers.add(new User_Answers(
-                            userId,
+                            userId3,
                             questionWithAnswers.getQuestion().getId(),
                             selectedAnswerId,
                             quizResultId
                     ));
-                    Log.d("Debug", "Added User_Answers: userId=" + userId
+                    Log.d("Debug", "Added User_Answers: userId=" + userId3
                             + ", questionId=" + questionWithAnswers.getQuestion().getId()
                             + ", selectedAnswerId=" + selectedAnswerId
                             + ", quizResultId=" + quizResultId);

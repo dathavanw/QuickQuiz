@@ -1,6 +1,7 @@
 
 package com.example.app_quickquiz;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -120,24 +121,35 @@ public class SignInActivity extends AppCompatActivity{
          }
          userRepository.loginWithEmailAndPassword(email, password,
          new Database.LoginCallback() {
+             @Override
+             public void onSuccess(FirebaseUser user) {
+                 Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                 // Lưu thông tin đăng nhập nếu "Remember me" được chọn
+                 boolean rememberMe = chkRememberMe.isChecked();
+                 if (rememberMe) {
+                     sharedPreferencesManager.saveLoginCredentials(email, password, true);
+                 } else {
+                     sharedPreferencesManager.clearLoginCredentials();
+                 }
+                 //truy vấn vai trò người dùng
+                 userRepository.getUserRole(user.getUid(), new Database.RoleCallback() {
                      @Override
-                     public void onSuccess(FirebaseUser user) {
-                         Toast.makeText(SignInActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
-                         // Lưu thông tin đăng nhập nếu "Remember me" được chọn
-                         boolean rememberMe = chkRememberMe.isChecked();
-                         if (rememberMe) {
-                             sharedPreferencesManager.saveLoginCredentials(email, password, true);
-                         } else {
-                             sharedPreferencesManager.clearLoginCredentials();
-                         }
-                         //truy vấn vai trò người dùng
+                     public void onRoleReceived(String role) {
+                         handleRoleNavigation(user.getUid(), role); // điều hướng màn hình dựa trên vai trò
                      }
 
                      @Override
-                     public void onFailure(String errorMessage) {
-                         Toast.makeText(SignInActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                     public void onError(String e) {
+                         Toast.makeText(SignInActivity.this, "Lỗi khi lấy vai trò người dùng " + e, Toast.LENGTH_SHORT).show();
                      }
-                 },
+                 });
+             }
+
+             @Override
+             public void onFailure(String errorMessage) {
+                 Toast.makeText(SignInActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+             }
+             },
                  new Database.RoleCallback() {
                      @Override
                      public void onRoleReceived(String role) {
@@ -158,8 +170,30 @@ public class SignInActivity extends AppCompatActivity{
                  });
 
 
-     }
-}
+             }
+             private void handleRoleNavigation(String userId, String role) {
+                 Intent intent;
+                 if ("teacher".equals(role)) {
+                     Log.d("DEBUG", "Role is teacher");
+                     intent = new Intent(SignInActivity.this, StudentActivity.class); // Màn hình cho giáo viên
+                 } else if ("student".equals(role)) {
+                     Log.d("DEBUG", "Role is student");
+                     intent = new Intent(SignInActivity.this, StudentActivity.class); // Màn hình cho học sinh
+                 } else {
+                     Log.d("DEBUG", "Role is unknown");
+                     Toast.makeText(SignInActivity.this, "Vai trò không xác định. Vui lòng liên hệ quản trị viên.", Toast.LENGTH_SHORT).show();
+                     return; // Dừng tại đây nếu không xác định được role
+                 }
+
+                 // Truyền userId sang màn hình đích
+                 intent.putExtra("userId", userId);
+                 Log.d("USER_ID TỪ MÀN HÌNH ĐĂNG NHẬP ", "Giá Trị: " + userId);
+                 SharedPreferences preferences = getSharedPreferences("AppPrefs", MODE_PRIVATE);
+                 preferences.edit().putString("userId", userId).apply();
+                 startActivity(intent);
+                 finish();
+             }
+         }
 
 
 
