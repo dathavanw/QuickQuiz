@@ -104,11 +104,11 @@ public class QuizActivity extends AppCompatActivity {
                 timerTextView.setText(String.format(Locale.getDefault(), "%02d:%02d", minutes, seconds));
             }
 
+
             @Override
             public void onFinish() {
-                timerTextView.setText("00:00");
-                // TODO: Nộp bài tự động hoặc hiện dialog báo hết giờ
-              //  submitQuizAutomatically();
+                Log.d("Countdown", "Hết giờ! onFinish() được gọi.");
+                SubmitQuiz(); // tự động nộp bài
             }
         };
         countDownTimer.start();
@@ -250,7 +250,22 @@ public class QuizActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
+//    private void submitQuizAutomatically() {
+//        Log.d("QuizActivity", "submitQuizAutomatically() được gọi từ onFinish()");
+//        // Lấy danh sách đáp án mà người dùng đã chọn
+//        List<User_Answers> userAnswers = getUserAnswersFromRecyclerView();
+//
+//        // Nộp đáp án lên backend/Firebase
+//        quizRepository.submitQuizResults(userId3, quiz_id, userAnswers);
+//
+//        // Tính điểm và hiển thị thông báo
+//        quizRepository.calculateScore(userAnswers, new QuizRepository.ScoreCallback() {
+//            @Override
+//            public void onScoreCalculated(int score) {
+//                showSubmissionDialog(QuizActivity.this, score); // Hiển thị thông báo và điểm số
+//            }
+//        });
+//    }
 
 
 }
