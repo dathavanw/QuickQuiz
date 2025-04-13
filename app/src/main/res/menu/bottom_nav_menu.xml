@@ -3,31 +3,31 @@
 
     <item
         android:id="@+id/nav_search"
-        android:icon="@drawable/ic_timkiem"
+        android:icon="@drawable/ic_timkiem1"
         android:title="Tìm kiếm"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_activity"
-        android:icon="@drawable/ic_hoatdong"
+        android:icon="@drawable/ic_hoatdong1"
         android:title="Hoạt động"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/ic_trangchu"
+        android:icon="@drawable/ic_trangchu1"
         android:title="Trang chủ"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_course"
-        android:icon="@drawable/ic_lophoc"
+        android:icon="@drawable/ic_lophoc1"
         android:title="Các lớp học"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/nav_account"
-        android:icon="@drawable/ic_caidat"
+        android:icon="@drawable/ic_caidat1"
         android:title="Tài khoản"
         app:showAsAction="ifRoom"/>
 </menu>

@@ -6,4 +6,9 @@
     <string name="add_question">Add question</string>
     <string name="multiple_choice">Multiple Choice</string>
     <string name="fill_blank">Fill Blank</string>
+    <string-array name="time_limit_options">
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+    </string-array>
 </resources>

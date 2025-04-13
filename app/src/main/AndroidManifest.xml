@@ -15,12 +15,22 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
+        </activity>
+        <activity android:name=".AddQuizActivity" />
+        <activity android:name=".AddMultipleChoiceActivity" />
+        <activity android:name=".FillBlankActivity" />
+        <activity android:name=".AddAnswerActivity"/>
+        <activity android:name=".AfterAddActivity" />
+        <activity android:name=".ActivityHoatDong"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".QuizDetailActivity"></activity>
     </application>
 
 </manifest>

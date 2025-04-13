@@ -7,5 +7,7 @@
     <color name="yellow">#F9D465</color>
     <color name="red">#FF6797</color>
     <color name="gray">#D9D9D9</color>
+    <color name="orange">#FFC68C</color>
     <color name="purple_500">#950D8B</color>
+    <color name="bottom_nav_background">#A5F5C7</color>
 </resources>
