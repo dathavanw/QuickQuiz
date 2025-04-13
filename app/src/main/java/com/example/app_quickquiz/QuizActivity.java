@@ -50,7 +50,8 @@ public class QuizActivity extends AppCompatActivity {
         quizRepository = new QuizRepository();
         timerTextView = findViewById(R.id.timerTextView);
         btnSubmit = findViewById(R.id.btnsubmit);
-        btnSubmit.setOnClickListener(v ->SubmitQuiz());
+        btnSubmit.setOnClickListener(v -> validateAnswersBeforeSubmit());
+
 
 
         recyclerView = findViewById(R.id.rvQuestions);
@@ -123,6 +124,9 @@ public class QuizActivity extends AppCompatActivity {
 
     public void SubmitQuiz(){
             // Bước 1: Lấy danh sách đáp án mà người dùng đã chọn từ RecyclerView
+
+
+
         QuestionWithAnswersAdapter adapter = (QuestionWithAnswersAdapter) recyclerView.getAdapter();
 
         if (adapter != null) {
@@ -241,7 +245,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         builder.setNegativeButton("Xem lại bài làm", (dialog, which) -> {
-            Intent intent = new Intent(context, StudentActivity.class);
+            Intent intent = new Intent(context, StudentActivity.class);  // chuyển sang tab History
             context.startActivity(intent);
         });
 
@@ -250,22 +254,38 @@ public class QuizActivity extends AppCompatActivity {
         dialog.show();
     }
 
-//    private void submitQuizAutomatically() {
-//        Log.d("QuizActivity", "submitQuizAutomatically() được gọi từ onFinish()");
-//        // Lấy danh sách đáp án mà người dùng đã chọn
-//        List<User_Answers> userAnswers = getUserAnswersFromRecyclerView();
-//
-//        // Nộp đáp án lên backend/Firebase
-//        quizRepository.submitQuizResults(userId3, quiz_id, userAnswers);
-//
-//        // Tính điểm và hiển thị thông báo
-//        quizRepository.calculateScore(userAnswers, new QuizRepository.ScoreCallback() {
-//            @Override
-//            public void onScoreCalculated(int score) {
-//                showSubmissionDialog(QuizActivity.this, score); // Hiển thị thông báo và điểm số
-//            }
-//        });
-//    }
+
+
+
+    private boolean allAnswersSelected() {
+        for (QuestionWithAnswers question : questionList) {
+            // Kiểm tra xem câu hỏi đã có đáp án được chọn chưa
+            if (question.getSelectedAnswerId() == null || question.getSelectedAnswerId().isEmpty()) {
+                return false; // Có ít nhất một câu hỏi chưa được trả lời
+            }
+        }
+        return true; // Tất cả các câu hỏi đã được trả lời
+    }
+    private void validateAnswersBeforeSubmit() {
+        QuestionWithAnswersAdapter adapter = (QuestionWithAnswersAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            setQuestionListFromRecyclerView(getQuestionsFromUI(recyclerView, adapter));
+
+            if (!allAnswersSelected()) {
+                Toast.makeText(this, "Vui lòng chọn đáp án cho tất cả các câu hỏi trước khi nộp bài!", Toast.LENGTH_LONG).show();
+            } else {
+                new AlertDialog.Builder(this)
+                        .setTitle("Xác nhận")
+                        .setMessage("Bạn có chắc chắn muốn nộp bài không?")
+                        .setPositiveButton("Nộp bài", (dialog, which) -> SubmitQuiz())
+                        .setNegativeButton("Hủy", null)
+                        .show();
+            }
+        } else {
+            Toast.makeText(this, "Không lấy được danh sách câu hỏi!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 
 }
