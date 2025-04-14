@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.core.content.ContextCompat;
 
+import com.example.app_quickquiz.AccountActivity;
 import com.example.app_quickquiz.R;
 import com.example.app_quickquiz.SignInActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -69,6 +70,8 @@ public class ActivityHoatDong extends AppCompatActivity {
                     startActivity(new Intent(this, ActivityHoatDong.class));
                     return true;
                 case "nav_account":
+                    startActivity(new Intent(this, AccountActivity.class));
+                    return true;
                 case "nav_course":
                 case "nav_search":
                 default:

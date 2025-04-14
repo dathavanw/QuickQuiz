@@ -4,15 +4,12 @@ public class User_Answers {
     private String id;
     private String user_id,question_id,answer_id ,quiz_result_id;
 
-    public User_Answers(String id) {
-        this.id = id;
-    }
 
     public User_Answers() {
     }
 
-    public User_Answers(String id, String user_id, String question_id, String answer_id, String quiz_result_id) {
-        this.id = id;
+    public User_Answers(String user_id, String question_id, String answer_id, String quiz_result_id) {
+        // this.id = id;
         this.user_id = user_id;
         this.question_id = question_id;
         this.answer_id = answer_id;

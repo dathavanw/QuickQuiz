@@ -6,7 +6,7 @@ public class Answer {
     private String answer;
     private boolean is_correct;
 
-    public Answer( String id, String content, boolean isCorrect,String  questionId) {
+    public Answer( String id,  String content, boolean isCorrect,String  questionId) {
         this.id = id;
         this.answer = content;
         this.is_correct = isCorrect;
@@ -32,8 +32,6 @@ public class Answer {
         this.question_id = question_id;
     }
 
-
-
     public boolean isCorrect() {
         return is_correct;
     }
@@ -42,15 +40,11 @@ public class Answer {
         this.is_correct = is_correct;
     }
 
-    public int getContent() {
-        return 0;
-    }
-
     public String getId() {
         return id;
     }
-//
-//    public void setId(String id) {
-//        this.id = id;
-//    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }

@@ -87,7 +87,7 @@ public class SearchQuizActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menu_button);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setSelectedItemId(R.id.nav_activity);
+        bottomNavigationView.setSelectedItemId(R.id.nav_search);
 
         bottomNavigationView.post(() -> {
             bottomNavigationView.setTranslationX(-bottomNavigationView.getWidth());
@@ -111,7 +111,6 @@ public class SearchQuizActivity extends AppCompatActivity {
                     startActivity(new Intent(this, AccountActivity.class));
                     return true;
                 case "nav_search":
-                    startActivity(new Intent(this, SearchQuizActivity.class));
                     return true;
                 case "nav_course":
 

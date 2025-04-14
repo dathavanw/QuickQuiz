@@ -28,7 +28,7 @@
         </activity>
         <activity android:name="com.example.app_quickquiz.activity.HistoryActivity" />
         <activity android:name="com.example.app_quickquiz.activity.SearchQuizActivity" />
-        <activity android:name="com.example.btl.QuizDetailActivity"></activity>
+        <activity android:name="com.example.btl.QuizDetailActivity"/>
         <activity android:name="com.example.app_quickquiz.activity.QuizActivity"/>
         <activity
             android:name="com.example.app_quickquiz.SignUpActivity"
@@ -79,6 +79,8 @@
             android:name="com.example.app_quickquiz.OnboardingActivity"
             android:exported="false">
         </activity>
+
+    
     </application>
 
 </manifest>

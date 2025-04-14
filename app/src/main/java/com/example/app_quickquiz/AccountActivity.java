@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -47,7 +48,7 @@ public class AccountActivity extends AppCompatActivity {
         menuButton = findViewById(R.id.menu_button);
         bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        bottomNavigationView.setSelectedItemId(R.id.nav_activity);
+        bottomNavigationView.setSelectedItemId(R.id.nav_account);
 
         bottomNavigationView.post(() -> {
             bottomNavigationView.setTranslationX(-bottomNavigationView.getWidth());
@@ -59,20 +60,31 @@ public class AccountActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             String itemName = getResources().getResourceEntryName(item.getItemId());
+
+            // Lấy role từ SharedPreferences
+            SharedPreferences prefs = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+            String role = prefs.getString("role", "student"); // mặc định là student
+
             switch (itemName) {
                 case "nav_home":
-                    startActivity(new Intent(this, StudentActivity.class));
+                    if (role.equals("teacher")) {
+                        startActivity(new Intent(this, GiaoVienMainActivity.class));
+                    } else {
+                        startActivity(new Intent(this, StudentActivity.class));
+                    }
                     return true;
 
                 case "nav_activity":
                     startActivity(new Intent(this, HistoryActivity.class));
                     return true;
+
                 case "nav_account":
-                    startActivity(new Intent(this, AccountActivity.class));
-                    return true;
+                    return true; // đang ở đây rồi
+
                 case "nav_search":
                     startActivity(new Intent(this, SearchQuizActivity.class));
                     return true;
+
                 case "nav_course":
                 default:
                     Toast.makeText(this, "Chức năng đang được cập nhật!", Toast.LENGTH_SHORT).show();

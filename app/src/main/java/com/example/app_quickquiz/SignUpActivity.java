@@ -31,7 +31,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app_quickquiz.model.User;
 import com.example.app_quickquiz.repository.UserRepository;
 
-import com.example.app_quickquiz.R;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
 
@@ -65,8 +64,6 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
         userRepository = new UserRepository();
-
-
         selectedRole = getIntent().getStringExtra("role");
 
         name = findViewById(R.id.txtName);

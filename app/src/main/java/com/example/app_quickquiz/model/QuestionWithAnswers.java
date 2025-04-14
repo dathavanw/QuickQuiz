@@ -5,12 +5,15 @@ import java.util.List;
 public class QuestionWithAnswers {
     private Question question;
     private List<Answer> answers;
+    private Answer selectedAnswer; // Đáp án mà người dùng chọn
 
     public QuestionWithAnswers(Question question, List<Answer> answers) {
         this.question = question;
         this.answers = answers;
+        this.selectedAnswer = null; // Mặc định chưa chọn đáp án
     }
 
+    // Getter và Setter
     public Question getQuestion() {
         return question;
     }
@@ -27,6 +30,16 @@ public class QuestionWithAnswers {
         this.answers = answers;
     }
 
+    public Answer getSelectedAnswer() {
+        return selectedAnswer;
+    }
 
-    // Getter và Setter
+    public void setSelectedAnswer(Answer selectedAnswer) {
+        this.selectedAnswer = selectedAnswer;
+    }
+
+    // Phương thức trả về ID của đáp án được chọn
+    public String getSelectedAnswerId() {
+        return selectedAnswer != null ? selectedAnswer.getId() : null; // Trả về null nếu chưa chọn
+    }
 }

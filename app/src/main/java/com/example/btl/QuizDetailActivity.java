@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.app_quickquiz.AccountActivity;
 import com.example.app_quickquiz.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
@@ -65,7 +66,7 @@ public class QuizDetailActivity extends AppCompatActivity {
                     startActivity(new Intent(QuizDetailActivity.this, GiaoVienMainActivity.class));
                     return true;
                 case "nav_account":
-                    startActivity(new Intent(QuizDetailActivity.this, SettingActivity.class));
+                    startActivity(new Intent(this, AccountActivity.class));
                     return true;
                 case "nav_course":
                     startActivity(new Intent(QuizDetailActivity.this, CourseActivity.class));

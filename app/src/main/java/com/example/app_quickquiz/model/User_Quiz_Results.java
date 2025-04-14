@@ -3,14 +3,15 @@ package com.example.app_quickquiz.model;
 public class User_Quiz_Results {
     private int id ;
     private String user_id, taken_at,quiz_id ;
-    private double score ;
+    private int score ;
 
-    public User_Quiz_Results(int id, String user_id, String taken_at, String quiz_id, double score) {
-        this.id = id;
+    public User_Quiz_Results(String user_id, String quiz_id, int score,String taken_at) {
+        //     this.id = id;
         this.user_id = user_id;
-        this.taken_at = taken_at;
         this.quiz_id = quiz_id;
         this.score = score;
+        this.taken_at = taken_at;
+
     }
 
     public User_Quiz_Results() {
@@ -52,7 +53,7 @@ public class User_Quiz_Results {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 }
