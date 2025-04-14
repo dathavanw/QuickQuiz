@@ -84,7 +84,11 @@ public class AddQuizActivity extends AppCompatActivity {
         spinnerTimeLimit.setAdapter(adapter);
 
         btnMultipleChoice.setOnClickListener(v -> createQuizIfNeededAndOpen("multiple"));
-        btnFillBlank.setOnClickListener(v -> createQuizIfNeededAndOpen("fill"));
+        //btnFillBlank.setOnClickListener(v -> createQuizIfNeededAndOpen("fill"));
+        btnFillBlank.setOnClickListener(v ->
+                Toast.makeText(this, "Chức năng chưa mở", Toast.LENGTH_SHORT).show()
+        );
+
     }
 
     private void toggleMenu() {

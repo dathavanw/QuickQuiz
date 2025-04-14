@@ -84,7 +84,11 @@ public class AccountActivity extends AppCompatActivity {
                     return true;
 
                 case "nav_activity":
-                    startActivity(new Intent(this, HistoryActivity.class));
+                    if (role.equals("teacher")) {
+                        startActivity(new Intent(this, ActivityHoatDong.class));
+                    } else {
+                        startActivity(new Intent(this, HistoryActivity.class));
+                    }
                     return true;
 
                 case "nav_account":
