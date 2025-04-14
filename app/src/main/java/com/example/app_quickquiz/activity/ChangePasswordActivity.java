@@ -90,23 +90,18 @@ public class ChangePasswordActivity extends AppCompatActivity {
 
     // Hiển thị dialog khi mật khẩu thay đổi thành công
     private void showSuccessDialog() {
-        // Tạo đối tượng AlertDialog.Builder
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-        // Inflate layout tùy chỉnh cho dialog
         View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
-
-        // Lấy nút OK trong layout
         Button btnOk = view.findViewById(R.id.btnOk);
-
-        // Thiết lập dialog
         builder.setView(view);
         AlertDialog dialog = builder.create();
 
-        // Xử lý sự kiện khi nhấn nút OK
-        btnOk.setOnClickListener(v -> dialog.dismiss());  // Đóng dialog khi nhấn nút OK
+        btnOk.setOnClickListener(v -> {
+            dialog.dismiss();  // Đóng dialog
+            finish();          // Quay về màn hình trước
+        });
 
-        // Hiển thị dialog
         dialog.show();
     }
+
 }

@@ -16,11 +16,11 @@ public class DialogRateActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Sửa lại tên layout có chứa Rate
-//        setContentView(R.layout.activity_main);
-//
-//        // Giả sử bạn có một nút để mở dialog rate
-//        findViewById(R.id.btnShowRateDialog).setOnClickListener(view -> showRateDialog());
+         // Sửa lại tên layout có chứa Rate
+        setContentView(R.layout.activity_account);
+
+        // Giả sử bạn có một nút để mở dialog rate
+        findViewById(R.id.layoutRateUs).setOnClickListener(view -> showRateDialog());
     }
 
     // Hiển thị dialog đánh giá
