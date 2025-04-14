@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app_quickquiz.activity.ChangePasswordActivity;
 import com.example.app_quickquiz.activity.DialogRateActivity;
 import com.example.app_quickquiz.activity.DialogShareActivity;
-import com.example.app_quickquiz.activity.EditProfileActivity;
 import com.example.app_quickquiz.activity.HistoryActivity;
 import com.example.app_quickquiz.activity.NotificationActivity;
 import com.example.app_quickquiz.activity.SearchQuizActivity;
@@ -35,12 +33,6 @@ import com.google.firebase.auth.FirebaseUser;
 public class AccountActivity extends AppCompatActivity {
 
     private LinearLayout btnSupport;
-    private Button btnEdit;
-    private LinearLayout layoutNotification;
-    private LinearLayout layoutChangePassword;
-    private LinearLayout layoutShare;
-    private LinearLayout layoutSupport;
-    private LinearLayout layoutRateUs;
     private UserRepository userRepository;
     private TextView txtUsername,txtEmailUser;
     private FirebaseAuth mAuth;
@@ -52,11 +44,11 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
 
-        btnEdit = findViewById(R.id.btnEdit);
-        layoutNotification = findViewById(R.id.layoutNotification);
-        layoutChangePassword = findViewById(R.id.layoutChangePassword);
-        layoutShare = findViewById(R.id.layoutShare);
-        layoutRateUs = findViewById(R.id.layoutRateUs);
+        // Khai báo và ánh xạ
+        LinearLayout btnNotification = findViewById(R.id.btnNotification);
+        LinearLayout btnChangePassword = findViewById(R.id.btnChangePassword);
+        LinearLayout btnShare = findViewById(R.id.btnShare);
+        LinearLayout btnRateUs = findViewById(R.id.btnRateUs);
 
         txtUsername = findViewById(R.id.textUser);
         txtEmailUser = findViewById(R.id.textEmailUser);
@@ -125,46 +117,6 @@ public class AccountActivity extends AppCompatActivity {
             });
         }
 
-        btnEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, EditProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        layoutNotification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, NotificationActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        layoutChangePassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, ChangePasswordActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        layoutShare.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, DialogShareActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        layoutRateUs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(AccountActivity.this, DialogRateActivity.class);
-                startActivity(intent);
-            }
-        });
-
         btnSupport = findViewById(R.id.btnSupport);
         btnSupport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +125,29 @@ public class AccountActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+// Notification
+        btnNotification.setOnClickListener(v -> {
+            Intent intent = new Intent(AccountActivity.this, NotificationActivity.class);
+            startActivity(intent);
+        });
 
+// ChangePasswordActivity
+        btnChangePassword.setOnClickListener(v -> {
+            Intent intent = new Intent(AccountActivity.this, ChangePasswordActivity.class);
+            startActivity(intent);
+        });
 
+// DialogShareActivity
+        btnShare.setOnClickListener(v -> {
+            Intent intent = new Intent(AccountActivity.this, DialogShareActivity.class);
+            startActivity(intent);
+        });
+
+// DialogRateActivity
+        btnRateUs.setOnClickListener(v -> {
+            Intent intent = new Intent(AccountActivity.this, DialogRateActivity.class);
+            startActivity(intent);
+        });
     }
     private void toggleMenu() {
         ObjectAnimator animatorX;

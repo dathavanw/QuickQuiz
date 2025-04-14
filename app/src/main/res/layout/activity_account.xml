@@ -85,7 +85,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
         android:background="#13A7DD">
-
+        
       <ImageView
           android:layout_width="119dp"
           android:layout_height="116dp"
@@ -108,7 +108,7 @@
         app:layout_constraintVertical_bias="0.805">
 
         <LinearLayout
-            android:id="@+id/layoutNotification"
+            android:id="@+id/btnNotification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -129,7 +129,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutChangePassword"
+            android:id="@+id/btnChangePassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -150,7 +150,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutShare"
+            android:id="@+id/btnShare"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
@@ -192,7 +192,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layoutRateUs"
+            android:id="@+id/btnRateUs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
