@@ -61,6 +61,7 @@ public class EditProfileActivity extends AppCompatActivity {
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
         profileImage = findViewById(R.id.profileImage);
 
+
         // Kiểm tra và in UID hiện tại của người dùng
         Log.d(TAG, "Current UID: " + userId);
 

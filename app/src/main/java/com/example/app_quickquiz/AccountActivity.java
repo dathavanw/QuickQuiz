@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app_quickquiz.activity.ChangePasswordActivity;
 import com.example.app_quickquiz.activity.DialogRateActivity;
 import com.example.app_quickquiz.activity.DialogShareActivity;
+import com.example.app_quickquiz.activity.EditProfileActivity;
 import com.example.app_quickquiz.activity.HistoryActivity;
 import com.example.app_quickquiz.activity.NotificationActivity;
 import com.example.app_quickquiz.activity.SearchQuizActivity;
@@ -38,6 +40,7 @@ public class AccountActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private boolean isMenuOpen = false;
     private ImageButton menuButton;
+    private Button btnEdit;
     private BottomNavigationView bottomNavigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,7 +107,9 @@ public class AccountActivity extends AppCompatActivity {
                     return true;
             }
         });
+
         FirebaseUser currentUser = mAuth.getCurrentUser() ;
+
 
         if(currentUser != null){
             String uid = currentUser.getUid();
@@ -120,6 +125,18 @@ public class AccountActivity extends AppCompatActivity {
                 }
             });
         }
+        btnEdit = findViewById(R.id.btnEdit);
+
+        btnEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AccountActivity.this,  EditProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
         btnSupport = findViewById(R.id.btnSupport);
         btnSupport.setOnClickListener(new View.OnClickListener() {
@@ -180,5 +197,26 @@ public class AccountActivity extends AppCompatActivity {
             animatorAlpha.start();
         }
         isMenuOpen = !isMenuOpen;
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        FirebaseUser currentUser = mAuth.getCurrentUser() ;
+
+
+        if(currentUser != null){
+            String uid = currentUser.getUid();
+            userRepository.getUserInfor(uid, new Database.DatabaseCallback() {
+                @Override
+                public void onSuccess(User user) {
+                    txtUsername.setText(user.getName());
+                    txtEmailUser.setText(user.getEmail());
+                }
+                @Override
+                public void onError(Exception e) {
+                    Toast.makeText(AccountActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 }
