@@ -36,7 +36,9 @@ public class Database {
 //    public FirebaseAuth getAuth(){
 //        return mAuth;
 //    }
-
+    public static DatabaseReference getDatabaseReference() {
+        return mDatabase;
+    }
     public void saveFeedbackToFirebase(String email, String feedback, FeedBackRepository.FeedbackCallback callback) {
         String feedbackId = FeedbackDatabase.push().getKey();
         Feedback feedbackObj = new Feedback(feedbackId, email, feedback);
@@ -65,7 +67,9 @@ public class Database {
                     }
                 });
     }
-
+    public interface EmailExistCallback {
+        void onResult(boolean exists);
+    }
 
     // Quên mật khẩu
     public void sendPasswordReset(String email){

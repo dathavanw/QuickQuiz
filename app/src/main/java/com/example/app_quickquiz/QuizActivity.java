@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.app_quickquiz.activity.HistoryActivity;
 import com.example.app_quickquiz.adapter.QuestionWithAnswersAdapter;
 import com.example.app_quickquiz.database.Database;
 import com.example.app_quickquiz.model.Answer;
@@ -45,7 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_quiz_dat);
 
         quizRepository = new QuizRepository();
         timerTextView = findViewById(R.id.timerTextView);
@@ -245,7 +246,7 @@ public class QuizActivity extends AppCompatActivity {
         });
 
         builder.setNegativeButton("Xem lại bài làm", (dialog, which) -> {
-            Intent intent = new Intent(context, StudentActivity.class);  // chuyển sang tab History
+            Intent intent = new Intent(context, HistoryActivity.class);  // chuyển sang tab History
             context.startActivity(intent);
         });
 

@@ -49,7 +49,7 @@
         <activity android:name="com.example.app_quickquiz.activity.DialogShareActivity" android:exported="true" />
         <activity android:name="com.example.app_quickquiz.activity.DialogRateActivity" android:exported="true" />
         <activity android:name="com.example.app_quickquiz.activity.EditProfileActivity" />
-
+        <activity android:name="com.example.app_quickquiz.QuizActivity"/>
     </application>
 
 </manifest>

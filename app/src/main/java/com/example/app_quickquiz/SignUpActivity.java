@@ -133,10 +133,17 @@ public class SignUpActivity extends AppCompatActivity {
             cfpassword.requestFocus();
             Toast.makeText(this, "Please re-enter password", Toast.LENGTH_SHORT).show();
         } else {
-            userRepository.insertUser(Name,Email,Password,selectedRole);
-            Toast.makeText(this, "Registration Successful", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(SignUpActivity.this, SignInActivity.class);
-            startActivity(intent);
+
+            userRepository.isEmailExists(Email, exists -> {
+                if (exists) {
+                    Toast.makeText(SignUpActivity.this, "Email đã được sử dụng!", Toast.LENGTH_SHORT).show();
+                } else {
+                    userRepository.insertUser(Name, Email, Password, selectedRole);
+                    Toast.makeText(SignUpActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(SignUpActivity.this, SignInActivity.class));
+                }
+            });
+
         }
     }
 
