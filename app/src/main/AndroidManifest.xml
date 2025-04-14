@@ -30,6 +30,11 @@
         <activity android:name="com.example.app_quickquiz.activity.SearchQuizActivity" />
         <activity android:name="com.example.btl.QuizDetailActivity"/>
         <activity android:name="com.example.app_quickquiz.activity.QuizActivity"/>
+        <activity android:name="com.example.app_quickquiz.activity.EditProfileActivity"/>
+        <activity android:name="com.example.app_quickquiz.activity.NotificationActivity"/>
+        <activity android:name="com.example.app_quickquiz.activity.ChangePasswordActivity"/>
+        <activity android:name="com.example.app_quickquiz.activity.DialogShareActivity"/>
+        <activity android:name="com.example.app_quickquiz.activity.DialogRateActivity"/>
         <activity
             android:name="com.example.app_quickquiz.SignUpActivity"
             android:exported="true">
