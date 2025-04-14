@@ -1,94 +1,105 @@
 package com.example.app_quickquiz.activity;
 
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.app_quickquiz.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.example.app_quickquiz.R;
 
 public class ChangePasswordActivity extends AppCompatActivity {
 
     private EditText etNewPassword, etConfirmPassword;
-    private TextView tvTitle;
-    private ImageButton btnBack, btnTogglePassword, btnToggleConfirmPassword;
+    private ImageButton btnTogglePassword, btnToggleConfirmPassword;
+    private boolean isPasswordVisible = false;
+    private boolean isConfirmPasswordVisible = false;
+    private Button btnChangePassword;
+
     private FirebaseAuth mAuth;
-    private FirebaseUser currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
-        // Khởi tạo FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
-        currentUser = mAuth.getCurrentUser();
 
-        // Khởi tạo các thành phần giao diện
-        tvTitle = findViewById(R.id.tvTitle);
         etNewPassword = findViewById(R.id.etNewPassword);
         etConfirmPassword = findViewById(R.id.etConfirmPassword);
-        btnBack = findViewById(R.id.btnBack);
         btnTogglePassword = findViewById(R.id.btnTogglePassword);
         btnToggleConfirmPassword = findViewById(R.id.btnToggleConfirmPassword);
+        btnChangePassword = findViewById(R.id.btnChangePassword);
 
-        // Xử lý sự kiện nút Back
-        btnBack.setOnClickListener(view -> finish());
+        // Hiển thị/ẩn mật khẩu
+        btnTogglePassword.setOnClickListener(v -> {
+            isPasswordVisible = !isPasswordVisible;
+            togglePasswordVisibility(etNewPassword, btnTogglePassword, isPasswordVisible);
+        });
 
-        // Toggle ẩn/hiện mật khẩu (không áp dụng transformation)
-        btnTogglePassword.setOnClickListener(view -> togglePasswordVisibility(etNewPassword));
-        btnToggleConfirmPassword.setOnClickListener(view -> togglePasswordVisibility(etConfirmPassword));
+        btnToggleConfirmPassword.setOnClickListener(v -> {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible;
+            togglePasswordVisibility(etConfirmPassword, btnToggleConfirmPassword, isConfirmPasswordVisible);
+        });
 
-        // Xử lý thay đổi mật khẩu
-        findViewById(R.id.btnChangePassword).setOnClickListener(view -> changePassword());
+        // Xử lý khi bấm nút "Change Password"
+        btnChangePassword.setOnClickListener(v -> handleChangePassword());
     }
 
-    // Toggle ẩn/hiện mật khẩu (không áp dụng transformation)
-    private void togglePasswordVisibility(EditText editText) {
-        if (editText.getTransformationMethod() != null) {
-            editText.setTransformationMethod(null);  // Hiển thị mật khẩu dưới dạng văn bản
+    private void togglePasswordVisibility(EditText editText, ImageButton button, boolean isVisible) {
+        if (isVisible) {
+            editText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+            button.setImageResource(R.drawable.ic_visibility);
         } else {
-            editText.setTransformationMethod(new android.text.method.PasswordTransformationMethod());  // Ẩn mật khẩu
+            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            button.setImageResource(R.drawable.ic_visibility_off);
         }
+        editText.setSelection(editText.getText().length());
     }
 
-    // Logic thay đổi mật khẩu
-    private void changePassword() {
+    private void handleChangePassword() {
         String newPassword = etNewPassword.getText().toString().trim();
         String confirmPassword = etConfirmPassword.getText().toString().trim();
 
-        // Kiểm tra nếu có trường nào trống
-        if (TextUtils.isEmpty(newPassword) || TextUtils.isEmpty(confirmPassword)) {
-            Toast.makeText(this, "Please fill out both fields", Toast.LENGTH_SHORT).show();
+        if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Kiểm tra mật khẩu xác nhận và mật khẩu mới có khớp nhau không
+        if (newPassword.length() < 6) {
+            Toast.makeText(this, "Password must be at least 6 characters", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         if (!newPassword.equals(confirmPassword)) {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Cập nhật mật khẩu trong Firebase Authentication
-        if (currentUser != null) {
-            currentUser.updatePassword(newPassword).addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    showSuccessDialog();  // Hiển thị dialog thành công khi thay đổi mật khẩu thành công
-                } else {
-                    Toast.makeText(ChangePasswordActivity.this, "Password change failed", Toast.LENGTH_SHORT).show();
-                }
-            });
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            user.updatePassword(newPassword)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            showSuccessDialog(); // Gọi dialog khi đổi mật khẩu thành công
+                        } else {
+                            Toast.makeText(this, "Failed to change password: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+        } else {
+            Toast.makeText(this, "User not logged in", Toast.LENGTH_SHORT).show();
         }
     }
 
-    // Hiển thị dialog khi mật khẩu thay đổi thành công
+    // Dialog thành công
     private void showSuccessDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         View view = getLayoutInflater().inflate(R.layout.dialog_change_password, null);
@@ -97,11 +108,10 @@ public class ChangePasswordActivity extends AppCompatActivity {
         AlertDialog dialog = builder.create();
 
         btnOk.setOnClickListener(v -> {
-            dialog.dismiss();  // Đóng dialog
-            finish();          // Quay về màn hình trước
+            dialog.dismiss();
+            finish();
         });
 
         dialog.show();
     }
-
 }
