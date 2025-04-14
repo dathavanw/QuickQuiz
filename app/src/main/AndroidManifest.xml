@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.BTL_Cung"
+        tools:targetApi="31">
+
+        <!-- BTL -->
+        <activity android:name="com.example.btl.GiaoVienMainActivity" android:exported="true" />
+        <activity android:name="com.example.btl.AddQuizActivity" />
+        <activity android:name="com.example.btl.AddMultipleChoiceActivity" />
+        <activity android:name="com.example.btl.FillBlankActivity" />
+        <activity android:name="com.example.btl.AddAnswerActivity"/>
+        <activity android:name="com.example.btl.AfterAddActivity" />
+        <activity android:name="com.example.btl.ActivityHoatDong" android:exported="true" />
+        <activity android:name="com.example.btl.QuizDetailActivity"/>
+
+        <!-- QUICKQUIZ -->
+        <activity android:name="com.example.app_quickquiz.activity.HistoryActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.SearchQuizActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.QuizActivity"/>
+        <activity android:name="com.example.app_quickquiz.SignUpActivity" android:exported="true" />
+        <activity android:name="com.example.app_quickquiz.AccountActivity" android:exported="false" />
+        <activity android:name="com.example.app_quickquiz.ForgotPasswordActivity" android:exported="false" />
+        <activity android:name="com.example.app_quickquiz.SupportCompleteActivity" android:exported="false" />
+        <activity android:name="com.example.app_quickquiz.VerifyCodeActivity" android:exported="false" />
+        <activity android:name="com.example.app_quickquiz.SupportActivity" android:exported="false" />
+        <activity android:name="com.example.app_quickquiz.SignInActivity" android:exported="true" />
+        <activity android:name="com.example.app_quickquiz.StudentActivity" android:exported="true" />
+        <activity android:name="com.example.app_quickquiz.WhoUsingActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.app_quickquiz.OnboardingActivity" android:exported="false" />
+
+        <!-- 👇 BỔ SUNG ACTIVITY BẠN ĐÃ CÓ NHƯNG CHƯA KHAI BÁO -->
+        <activity android:name="com.example.app_quickquiz.activity.ChangePasswordActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.NotificationActivity" />
+        <activity android:name="com.example.app_quickquiz.activity.DialogShareActivity" android:exported="true" />
+        <activity android:name="com.example.app_quickquiz.activity.DialogRateActivity" android:exported="true" />
+        <activity android:name="com.example.app_quickquiz.activity.EditProfileActivity" />
+        <activity android:name="com.example.app_quickquiz.QuizActivity"/>
+    </application>
+
+</manifest>

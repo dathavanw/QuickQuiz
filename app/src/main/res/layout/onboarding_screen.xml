@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/onboarding_image"
+        android:layout_width="376dp"
+        android:layout_height="245dp"
+        android:src="@drawable/onboarding3" />
+
+    <TextView
+        android:id="@+id/onboarding_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:text="Welcome"
+        android:textSize="18sp" />
+    <TextView
+        android:id="@+id/onboarding_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:alpha="0.5"
+        android:text="QuickQuiz là nền tảng học tập thông minh giúp kết nối giữa giáo viên và sinh viên thông qua hệ thống bài tập trắc nghiệm linh hoạt."
+        android:textSize="18sp" />
+
+</LinearLayout>

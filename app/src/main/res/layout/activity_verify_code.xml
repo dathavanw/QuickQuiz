@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="411dp"
+    android:layout_height="731dp"
+    android:background="@drawable/image_forgot_password"
+    android:id="@+id/forgot_password"
+    >
+
+    <TextView
+        android:id="@+id/txtViewForgotPassword"
+        android:layout_width="342dp"
+        android:layout_height="39dp"
+        android:text="Forgot your Password"
+        android:textColor="@color/white"
+        android:textSize="32dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="368dp"
+        android:layout_height="401dp"
+        android:gravity="center"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0.9">
+
+        <TextView
+            android:layout_width="228dp"
+            android:layout_height="29dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="Forgot Password"
+            android:textColor="@color/black"
+            android:textSize="24dp" />
+
+        <TextView
+            android:layout_width="349dp"
+            android:layout_height="48dp"
+            android:text="Don’t worry about your account"
+            android:textSize="20dp"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/gray"
+            />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+            <EditText
+                android:id="@+id/opt1"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/otp_box"
+                android:gravity="center"
+                android:inputType="numberPassword"
+                android:maxLength="1"
+                android:textSize="24sp" />
+            <EditText
+                android:id="@+id/opt2"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:inputType="numberPassword"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box"
+                android:layout_margin="8dp"/>
+            <EditText
+                android:id="@+id/opt3"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:inputType="numberPassword"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box"
+                android:layout_margin="8dp"/>
+            <EditText
+                android:id="@+id/opt4"
+                android:layout_width="42dp"
+                android:layout_height="38dp"
+                android:inputType="numberPassword"
+                android:gravity="center"
+                android:maxLength="1"
+                android:textSize="24sp"
+                android:background="@drawable/otp_box"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="75dp"
+            android:layout_marginRight="25dp"
+            android:text="This code expires in"
+            android:textColor="#8B8B8B"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:text="5 minutes"
+            android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="80dp"
+            />
+        <Button
+            android:layout_width="260dp"
+            android:layout_height="58dp"
+            android:backgroundTint="@color/blueDark"
+            android:layout_gravity="center"
+            android:layout_marginTop="120dp"
+            android:text="Verify code"
+            android:textSize="24dp"
+            />
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="16dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="160dp"
+            android:text="Resend Code"
+            android:textColor="@color/black"
+            />
+
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

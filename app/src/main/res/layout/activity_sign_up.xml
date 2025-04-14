@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/signup"
+    android:background="@mipmap/viewsignup">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="311dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.597"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.931">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Buttons Switch -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="49dp"
+                android:background="@drawable/border"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnSignIn"
+                    android:layout_width="131dp"
+                    android:layout_height="49dp"
+                    android:backgroundTint="@color/white"
+                    android:text="Sign in"
+                    android:textColor="@color/blue"
+                    android:textSize="20sp" />
+
+                <Button
+                    android:id="@+id/btnSignUp"
+                    android:layout_width="131dp"
+                    android:layout_height="49dp"
+                    android:backgroundTint="@color/blue"
+                    android:text="Sign up"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <!-- Username -->
+            <EditText
+                android:id="@+id/txtName"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:hint="Enter username" />
+
+            <!-- Password -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/txtPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Password"
+                    android:paddingEnd="40dp" />
+
+                <ImageButton
+                    android:id="@+id/btnHintPassword"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/eyepassword" />
+            </RelativeLayout>
+
+            <!-- Confirm Password -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <EditText
+                    android:id="@+id/txtCPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="Re-enter password"
+                    android:paddingEnd="40dp" />
+
+                <ImageButton
+                    android:id="@+id/btnHintCPassword"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@null"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/eyepassword" />
+            </RelativeLayout>
+
+            <!-- Password warning -->
+            <TextView
+                android:id="@+id/passwordWarning"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Confirm password does not match !"
+                android:textColor="@android:color/holo_red_dark"
+                android:visibility="gone" />
+
+            <!-- Email -->
+            <EditText
+                android:id="@+id/txtEmailSignup"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="24dp"
+                android:hint="Enter Email" />
+
+            <!-- Sign up button -->
+            <Button
+                android:id="@+id/btnSignUpBottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@color/blue"
+                android:text="Sign up"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/continues"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:alpha="0.5"
+                android:text="-Continue-"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnSignUpBottom" />
+            <!-- Google Sign-in icon -->
+            <ImageView
+                android:id="@+id/btnGoogle"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/google"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

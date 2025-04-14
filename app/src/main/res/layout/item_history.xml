@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="8dp"
+    android:background="#A8D8EA">
+
+    <TextView
+        android:id="@+id/txtThoiGian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14:00 3/2/2025"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txtMaBai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mã bài: 84435"
+        android:textSize="14sp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/txtDiem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Điểm: 25/30"
+        android:textSize="14sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/btnXemChiTiet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Xem chi tiết"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#53AD95"
+        android:layout_gravity="center_vertical|end"
+        android:padding="8dp"/>
+</LinearLayout>

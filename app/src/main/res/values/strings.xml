@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="menu_button_desc">Menu Button</string>
+    <string name="title_create_quiz">Create Quiz</string>
+    <string name="hint_quiz_title">Hint Quiz Title</string>
+    <string name="add_question">Add question</string>
+    <string name="multiple_choice">Multiple Choice</string>
+    <string name="fill_blank">Fill Blank</string>
+    <string-array name="time_limit_options">
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+    </string-array>
+    <string name="app_name">QuickQuiz</string>
+    <string name="quiz_code">Mã bài:</string>
+    <string name="sign_out">Sign out</string>
+    <string name="student">Học sinh</string>
+
+    <string name="nav_search">Tìm kiếm</string>
+    <string name="nav_activities">Hoạt động</string>
+    <string name="nav_home">Trang chủ</string>
+    <string name="nav_classes">Các lớp học</string>
+    <string name="nav_account">Tài khoản</string>
+</resources>
