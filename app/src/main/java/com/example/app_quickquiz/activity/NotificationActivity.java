@@ -47,7 +47,7 @@ public class NotificationActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         // Tham chiếu Firebase
-        databaseRef = FirebaseDatabase.getInstance().getReference("notifications");
+        databaseRef = FirebaseDatabase.getInstance().getReference("Notifications");
 
         // Tải dữ liệu
         loadNotifications();
